@@ -1,7 +1,7 @@
 # Improving Human Verification of LLM Reasoning through Interactive Explanation Interfaces
 
 [![arXiv](https://img.shields.io/badge/arXiv-2510.22922-b31b1b.svg)](https://arxiv.org/abs/2510.22922)
-[![Website](https://img.shields.io/badge/Website-Live-blue)](https://your-username.github.io/interactive-llm-verification/)
+[![Website](https://img.shields.io/badge/Website-Live-blue)](https://nikitakharya09.github.io/improving-human-verification-of-llm-reasoning/)
 
 Official website for the paper "Improving Human Verification of LLM Reasoning through Interactive Explanation Interfaces" by Runtao Zhou, Giang Nguyen, Nikita Kharya, Anh Totti Nguyen, and Chirag Agarwal.
 
@@ -26,7 +26,7 @@ Our user study with **125 participants** demonstrates:
 
 ## 🌐 Website
 
-Visit the live website: [https://your-username.github.io/interactive-llm-verification/](https://your-username.github.io/interactive-llm-verification/)
+Visit the live website: [https://nikitakharya09.github.io/improving-human-verification-of-llm-reasoning/](https://nikitakharya09.github.io/improving-human-verification-of-llm-reasoning/)
 
 ## 📁 Repository Structure
 
@@ -42,7 +42,7 @@ The website is a single self-contained HTML file with no dependencies. Simply:
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/your-username/interactive-llm-verification.git
+   git clone https://github.com/nikitakharya09/improving-human-verification-of-llm-reasoning.git
    cd interactive-llm-verification
    ```
 
@@ -61,7 +61,7 @@ The website is a single self-contained HTML file with no dependencies. Simply:
 3. Under **Source**, select **Deploy from a branch**
 4. Select **main** branch and **/ (root)** folder
 5. Click **Save**
-6. Your site will be live at `https://your-username.github.io/interactive-llm-verification/`
+6. Your site will be live at `https://nikitakharya09.github.io/improving-human-verification-of-llm-reasoning/`
 
 ## 📄 Citation
 
