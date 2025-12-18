@@ -429,10 +429,17 @@
         
         .demo-content {
             display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
         }
         
         .demo-content.active {
-            display: block;
+            display: flex;
+            pointer-events: auto;
         }
         
         /* Disabled button styling */
@@ -648,7 +655,7 @@
                     <a href="https://arxiv.org/abs/2510.22922" class="btn btn-primary" target="_blank">📄 Read Paper</a>
                     <a href="https://github.com/Runtaozhou/Interactive-CoT" class="btn btn-secondary" target="_blank">💻 GitHub Repo</a>
                     <a href="https://huggingface.co/spaces/Miles1999/interactive-llm-xai-TEST" class="btn btn-secondary" target="_blank">🤗 HF Interactive Demo</a>
-                    <a href="https://www.youtube.com/watch?v=_AVPUMP4jiY&t=1s" class="btn btn-secondary" target="_blank">🎥 Summary Video</a>
+                    <a href="https://www.youtube.com/watch?v=_AVPUMP4jiY&t=1s" class="btn btn-secondary" target="_blank">🎥 2-Min Summary Video</a>
                     <a href="#" class="btn btn-secondary" onclick="showBibtex(event)" target="_blank">📋 BibTeX Citation</a>
                 </div>
                 
@@ -715,31 +722,31 @@
                     <button class="demo-tab" onclick="switchDemoFormat('text')">Text (CoT)</button>
                 </div>
                 
-                <!-- iGraph Demo Content -->
-                <div id="demo-igraph" class="demo-content active">
-                    <!-- Dual Panel Layout -->
-                    <div style="display: flex; height: 600px; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
-                        <!-- Left Panel -->
-                        <div style="width: 30%; background: white; padding: 20px; overflow-y: auto; border-right: 2px solid #ddd;">
-                            <div style="margin-bottom: 30px;">
-                                <div style="font-size: 18px; font-weight: bold; color: #2c3e50; margin-bottom: 15px; border-bottom: 2px solid #3498db; padding-bottom: 5px;">Problem Statement</div>
-                                <p style="font-size: 15px; line-height: 1.6; color: #34495e;">A bathroom has <span style="background-color: #ff634780; padding: 2px 6px; border-radius: 5px; color: black;">10 6-inch tiles</span> along its width and <span style="background-color: #ff634780; padding: 2px 6px; border-radius: 5px; color: black;">20 6-inch tiles</span> along its length. What is the square footage of the bathroom?</p>
-                            </div>
-                            
-                            <div>
-                                <div style="font-size: 18px; font-weight: bold; color: #2c3e50; margin-bottom: 15px; border-bottom: 2px solid #3498db; padding-bottom: 5px;">Problem Summary</div>
-                                <ul style="list-style-type: disc; margin-left: 20px; margin-bottom: 15px;">
-                                    <li style="font-size: 14px; line-height: 1.6; margin-bottom: 8px; color: #34495e;"><span style="background-color: #ff634780; padding: 2px 6px; border-radius: 5px;">Width: 10 tiles × 6 inches</span></li>
-                                    <li style="font-size: 14px; line-height: 1.6; margin-bottom: 8px; color: #34495e;"><span style="background-color: #87cefa80; padding: 2px 6px; border-radius: 5px;">Length: 20 tiles × 6 inches</span></li>
-                                </ul>
-                                <div style="font-weight: bold; color: #2c3e50;"><strong>Goal:</strong> Calculate the square footage of the bathroom</div>
-                            </div>
+                <!-- Shared Dual Panel Layout -->
+                <div style="display: flex; height: 600px; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                    <!-- Left Panel (Shared across all formats) -->
+                    <div style="width: 30%; background: white; padding: 20px; overflow-y: auto; border-right: 2px solid #ddd;">
+                        <div style="margin-bottom: 30px;">
+                            <div style="font-size: 18px; font-weight: bold; color: #2c3e50; margin-bottom: 15px; border-bottom: 2px solid #3498db; padding-bottom: 5px;">Problem Statement</div>
+                            <p style="font-size: 15px; line-height: 1.6; color: #34495e;">A bathroom has <span style="background-color: #ff634780; padding: 2px 6px; border-radius: 5px; color: black;">10 6-inch tiles</span> along its width and <span style="background-color: #ff634780; padding: 2px 6px; border-radius: 5px; color: black;">20 6-inch tiles</span> along its length. What is the square footage of the bathroom?</p>
                         </div>
                         
-                        <!-- Right Panel -->
-                        <div style="width: 70%; background: #F5F5F5; display: flex; flex-direction: column;">
+                        <div>
+                            <div style="font-size: 18px; font-weight: bold; color: #2c3e50; margin-bottom: 15px; border-bottom: 2px solid #3498db; padding-bottom: 5px;">Problem Summary</div>
+                            <ul style="list-style-type: disc; margin-left: 20px; margin-bottom: 15px;">
+                                <li style="font-size: 14px; line-height: 1.6; margin-bottom: 8px; color: #34495e;"><span style="background-color: #ff634780; padding: 2px 6px; border-radius: 5px;">Width: 10 tiles × 6 inches</span></li>
+                                <li style="font-size: 14px; line-height: 1.6; margin-bottom: 8px; color: #34495e;"><span style="background-color: #87cefa80; padding: 2px 6px; border-radius: 5px;">Length: 20 tiles × 6 inches</span></li>
+                            </ul>
+                            <div style="font-weight: bold; color: #2c3e50;"><strong>Goal:</strong> Calculate the square footage of the bathroom</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Panel Container -->
+                    <div style="width: 70%; position: relative;">
+                        <!-- iGraph Right Panel -->
+                        <div id="demo-igraph" class="demo-content active" style="height: 100%; background: #F5F5F5; flex-direction: column;">
                             <!-- Controls -->
-                            <div style="background-color: #f8f9fa; padding: 10px; display: flex; gap: 10px; border-bottom: 1px solid #ddd;">
+                            <div style="background-color: #f8f9fa; padding: 10px; display: flex; gap: 10px; border-bottom: 1px solid #ddd; position: relative; z-index: 10;">
                                 <button id="demoPlayPause" style="padding: 8px 15px; border: none; border-radius: 4px; font-weight: 500; cursor: pointer; color: white; background-color: #2ecc71;">▶ Play</button>
                                 <button id="demoStop" style="padding: 8px 15px; border: none; border-radius: 4px; font-weight: 500; cursor: pointer; color: white; background-color: #e74c3c;">■ Stop</button>
                                 <button id="demoPrev" style="padding: 8px 15px; border: none; border-radius: 4px; font-weight: 500; cursor: pointer; color: white; background-color: #3498db;">⬅ Previous</button>
@@ -761,128 +768,85 @@
                                 <iframe id="demoStepIframe" style="width: 100%; height: 30%; border: none; border-top: 1px solid #ddd; background: white; display: block; overflow-y: auto;" srcdoc="<div style='padding: 20px; font-family: Arial, sans-serif;'>Click Play to start the visualization</div>"></iframe>
                             </div>
                         </div>
-                    </div>
-                </div>
-                
-                <!-- iPoT Demo Content -->
-                <div id="demo-ipot" class="demo-content">
-                <div style="max-width: 1000px; margin: 0 auto;">
-                    <!-- Question -->
-                    <div style="background: rgba(78, 205, 196, 0.1); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid var(--secondary);">
-                        <h4 style="color: var(--secondary); margin-bottom: 0.8rem;">Question:</h4>
-                        <p style="line-height: 1.7;">A bathroom has <span style="background: rgba(255,107,53,0.3); padding: 0.2rem 0.4rem; border-radius: 3px; color: var(--accent); font-weight: bold;">10 6-inch tiles</span> along its width and <span style="background: rgba(255,107,53,0.3); padding: 0.2rem 0.4rem; border-radius: 3px; color: var(--accent); font-weight: bold;">20 6-inch tiles</span> along its length.</p>
-                        <p style="margin-top: 0.5rem; font-weight: bold; color: var(--highlight);">What is the square footage of the bathroom?</p>
-                    </div>
-                    
-                    <!-- Navigation buttons -->
-                    <div style="display: flex; gap: 0.8rem; margin-bottom: 1.5rem; justify-content: center; flex-wrap: wrap;">
-                        <button id="potPlayPause" style="background: var(--secondary); color: var(--primary); border: none; padding: 0.7rem 1.5rem; font-size: 0.9rem; cursor: pointer; transition: all 0.3s; border-radius: 4px; font-family: 'Space Mono', monospace; font-weight: bold;">▶ Play</button>
-                        <button id="potStop" style="background: var(--accent); color: white; border: none; padding: 0.7rem 1.5rem; font-size: 0.9rem; cursor: pointer; transition: all 0.3s; border-radius: 4px; font-family: 'Space Mono', monospace;">■ Stop</button>
-                        <button id="potPrev" style="background: rgba(78, 205, 196, 0.2); color: var(--secondary); border: 2px solid var(--secondary); padding: 0.7rem 1.5rem; font-size: 0.9rem; cursor: pointer; transition: all 0.3s; border-radius: 4px; font-family: 'Space Mono', monospace;">⬅ Previous</button>
-                        <button id="potNext" style="background: rgba(78, 205, 196, 0.2); color: var(--secondary); border: 2px solid var(--secondary); padding: 0.7rem 1.5rem; font-size: 0.9rem; cursor: pointer; transition: all 0.3s; border-radius: 4px; font-family: 'Space Mono', monospace;">Next ➡</button>
-                    </div>
-                    
-                    <!-- iPoT Code visualization -->
-                    <div style="background: rgba(10, 14, 39, 0.95); padding: 2rem; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 0.9rem; min-height: 400px;">
-                        <div id="potCode" style="color: var(--text); line-height: 1.8;">
-                            <div style="color: #888; margin-bottom: 1rem;"># Python Solution</div>
+                        
+                        <!-- iPoT Right Panel -->
+                        <div id="demo-ipot" class="demo-content" style="height: 100%; background: #F5F5F5; flex-direction: column; padding: 20px; overflow-y: auto;">
+                            <!-- Controls -->
+                            <div style="background-color: #f8f9fa; padding: 10px; display: flex; gap: 10px; border-bottom: 1px solid #ddd; margin-bottom: 20px; border-radius: 4px; position: relative; z-index: 10;">
+                                <button id="potPlayPause" style="padding: 8px 15px; border: none; border-radius: 4px; font-weight: 500; cursor: pointer; color: white; background-color: #2ecc71;">▶ Play</button>
+                                <button id="potStop" style="padding: 8px 15px; border: none; border-radius: 4px; font-weight: 500; cursor: pointer; color: white; background-color: #e74c3c;">■ Stop</button>
+                                <button id="potPrev" style="padding: 8px 15px; border: none; border-radius: 4px; font-weight: 500; cursor: pointer; color: white; background-color: #3498db;">⬅ Previous</button>
+                                <button id="potNext" style="padding: 8px 15px; border: none; border-radius: 4px; font-weight: 500; cursor: pointer; color: white; background-color: #3498db;">Next ➡</button>
+                            </div>
+                            
+                            <!-- iPoT Code visualization -->
+                            <div style="background: white; padding: 2rem; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 0.9rem; flex: 1; overflow-y: auto; border: 2px solid #e5e7eb;">
+                                <div id="potCode" style="color: #1e293b; line-height: 1.8;">
+                                    <div style="color: #64748b; margin-bottom: 1rem; font-weight: bold;"># Python Solution</div>
+                                </div>
+                                <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(78, 205, 196, 0.1); border-radius: 6px; border-left: 3px solid #4ECDC4;">
+                                    <div style="font-size: 0.85rem; color: #334155; margin-bottom: 0.5rem; font-weight: bold;">Variables:</div>
+                                    <div id="potVariables" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.5rem;">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Step description -->
+                            <div id="potStepDesc" style="margin-top: 1rem; padding: 1.2rem; background: #FFF3CD; border-left: 4px solid #FFC107; border-radius: 4px;">
+                                <div style="margin-bottom: 0.5rem; color: #1e293b;"><span id="potProgress">Step <strong style="color: #4ECDC4;">1</strong> of <strong>5</strong></span></div>
+                                <strong style="color: #1e293b;">Step 1:</strong> <span style="color: #1e293b;">Starting code execution...</span>
+                            </div>
                         </div>
-                        <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(78, 205, 196, 0.1); border-radius: 6px; border-left: 3px solid var(--secondary);">
-                            <div style="font-size: 0.85rem; color: var(--text-dim); margin-bottom: 0.5rem;">Variables:</div>
-                            <div id="potVariables" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.5rem;">
+                        
+                        <!-- iCoT Right Panel -->
+                        <div id="demo-icot" class="demo-content" style="height: 100%; background: #F5F5F5; flex-direction: column; padding: 20px; overflow-y: auto;">
+                            <!-- Controls -->
+                            <div style="background-color: #f8f9fa; padding: 10px; display: flex; gap: 10px; border-bottom: 1px solid #ddd; margin-bottom: 20px; border-radius: 4px;">
+                                <button id="cotPlayPause" style="padding: 8px 15px; border: none; border-radius: 4px; font-weight: 500; cursor: pointer; color: white; background-color: #2ecc71;">▶ Play</button>
+                                <button id="cotStop" style="padding: 8px 15px; border: none; border-radius: 4px; font-weight: 500; cursor: pointer; color: white; background-color: #e74c3c;">■ Stop</button>
+                                <button id="cotPrev" style="padding: 8px 15px; border: none; border-radius: 4px; font-weight: 500; cursor: pointer; color: white; background-color: #3498db;">⬅ Previous</button>
+                                <button id="cotNext" style="padding: 8px 15px; border: none; border-radius: 4px; font-weight: 500; cursor: pointer; color: white; background-color: #3498db;">Next ➡</button>
+                            </div>
+                            
+                            <!-- iCoT Text visualization -->
+                            <div style="background: white; padding: 1.5rem; border-radius: 8px; flex: 1; overflow-y: auto; border: 2px solid #e5e7eb;">
+                                <div id="cotSteps" style="color: #1e293b;">
+                                </div>
+                            </div>
+                            
+                            <!-- Step description -->
+                            <div id="cotStepDesc" style="margin-top: 1rem; padding: 1.2rem; background: #FFF3CD; border-left: 4px solid #FFC107; border-radius: 4px;">
+                                <div style="margin-bottom: 0.5rem; color: #1e293b;"><span id="cotProgress">Step <strong style="color: #4ECDC4;">1</strong> of <strong>5</strong></span></div>
+                                <strong style="color: #1e293b;">Step 1:</strong> <span style="color: #1e293b;">Starting explanation...</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Text (CoT) Right Panel -->
+                        <div id="demo-text" class="demo-content" style="height: 100%; background: white; padding: 20px; overflow-y: auto;">
+                            <div style="padding: 1.5rem;">
+                                <div style="color: #1e293b; line-height: 1.6;">
+                                    <p style="margin-bottom: 1.2rem; font-size: 0.9rem;"><strong style="color: #4ECDC4;">Step 1:</strong> Calculate the total width of the bathroom in inches. We know there are 10 tiles along the width, and each tile is 6 inches. Width in inches = Number of tiles × Tile length = 10 × 6 = 60 inches</p>
+                                    
+                                    <p style="margin-bottom: 1.2rem; font-size: 0.9rem;"><strong style="color: #4ECDC4;">Step 2:</strong> Convert the width from inches to feet. To convert inches to feet, we divide by 12 (since 1 foot = 12 inches). Width in feet = 60 inches ÷ 12 = 5 feet</p>
+                                    
+                                    <p style="margin-bottom: 1.2rem; font-size: 0.9rem;"><strong style="color: #4ECDC4;">Step 3:</strong> Calculate the total length of the bathroom in inches. We know there are 20 tiles along the length, and each tile is 6 inches. Length in inches = Number of tiles × Tile length = 20 × 6 = 120 inches</p>
+                                    
+                                    <p style="margin-bottom: 1.2rem; font-size: 0.9rem;"><strong style="color: #4ECDC4;">Step 4:</strong> Convert the length from inches to feet. To convert inches to feet, we divide by 12. Length in feet = 120 inches ÷ 12 = 10 feet</p>
+                                    
+                                    <p style="margin-bottom: 1.2rem; font-size: 0.9rem;"><strong style="color: #4ECDC4;">Step 5:</strong> Calculate the square footage of the bathroom. The area is calculated by multiplying the length by the width. Area = Length × Width = 10 feet × 5 feet = 50 square feet</p>
+                                    
+                                    <div style="margin-top: 1.5rem; padding: 1.2rem; background: #d4edda; border: 1px solid #c3e6cb; color: #155724; border-radius: 6px;">
+                                        <strong style="font-size: 1rem;">Final Answer:</strong> The bathroom is 50 square feet.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Note about traditional format -->
+                            <div style="margin: 1.5rem; padding: 1.2rem; background: #fff3cd; border-left: 4px solid #ffc107; border-radius: 4px;">
+                                <strong style="color: #1e293b; font-size: 0.95rem;">Traditional CoT Format:</strong> <span style="color: #1e293b; font-size: 0.9rem;">This is the standard text-based output without interactivity. All steps are shown at once, which can lead to higher cognitive load and slower verification compared to the interactive formats above.</span>
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- Step description -->
-                    <div id="potStepDesc" style="margin-top: 1.5rem; padding: 1.2rem; background: rgba(255, 201, 60, 0.15); border-left: 4px solid var(--highlight); border-radius: 4px;">
-                        <strong>Step 1:</strong> Starting code execution...
-                    </div>
-                    
-                    <!-- Context -->
-                    <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: var(--text-dim); font-family: 'Space Mono', monospace; padding: 1rem 0;">
-                        <span id="potProgress">Step <strong style="color: var(--secondary);">1</strong> of <strong>5</strong></span>
-                        <span style="color: var(--highlight);">⚡ Interactive Program-of-Thought</span>
-                    </div>
-                </div>
-                </div>
-                
-                <!-- iCoT Demo Content -->
-                <div id="demo-icot" class="demo-content">
-                <div style="max-width: 1000px; margin: 0 auto;">
-                    <!-- Question -->
-                    <div style="background: rgba(78, 205, 196, 0.1); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid var(--secondary);">
-                        <h4 style="color: var(--secondary); margin-bottom: 0.8rem;">Question:</h4>
-                        <p style="line-height: 1.7;">A bathroom has <span style="background: rgba(255,107,53,0.3); padding: 0.2rem 0.4rem; border-radius: 3px; color: var(--accent); font-weight: bold;">10 6-inch tiles</span> along its width and <span style="background: rgba(255,107,53,0.3); padding: 0.2rem 0.4rem; border-radius: 3px; color: var(--accent); font-weight: bold;">20 6-inch tiles</span> along its length.</p>
-                        <p style="margin-top: 0.5rem; font-weight: bold; color: var(--highlight);">What is the square footage of the bathroom?</p>
-                    </div>
-                    
-                    <!-- Navigation buttons -->
-                    <div style="display: flex; gap: 0.8rem; margin-bottom: 1.5rem; justify-content: center; flex-wrap: wrap;">
-                        <button id="cotPlayPause" style="background: var(--secondary); color: var(--primary); border: none; padding: 0.7rem 1.5rem; font-size: 0.9rem; cursor: pointer; transition: all 0.3s; border-radius: 4px; font-family: 'Space Mono', monospace; font-weight: bold;">▶ Play</button>
-                        <button id="cotStop" style="background: var(--accent); color: white; border: none; padding: 0.7rem 1.5rem; font-size: 0.9rem; cursor: pointer; transition: all 0.3s; border-radius: 4px; font-family: 'Space Mono', monospace;">■ Stop</button>
-                        <button id="cotPrev" style="background: rgba(78, 205, 196, 0.2); color: var(--secondary); border: 2px solid var(--secondary); padding: 0.7rem 1.5rem; font-size: 0.9rem; cursor: pointer; transition: all 0.3s; border-radius: 4px; font-family: 'Space Mono', monospace;">⬅ Previous</button>
-                        <button id="cotNext" style="background: rgba(78, 205, 196, 0.2); color: var(--secondary); border: 2px solid var(--secondary); padding: 0.7rem 1.5rem; font-size: 0.9rem; cursor: pointer; transition: all 0.3s; border-radius: 4px; font-family: 'Space Mono', monospace;">Next ➡</button>
-                    </div>
-                    
-                    <!-- iCoT Text visualization -->
-                    <div style="background: white; padding: 2rem; border-radius: 8px; min-height: 400px; border: 2px solid #e5e7eb;">
-                        <div id="cotSteps" style="color: #1e293b;">
-                        </div>
-                    </div>
-                    
-                    <!-- Step description -->
-                    <div id="cotStepDesc" style="margin-top: 1.5rem; padding: 1.2rem; background: rgba(255, 201, 60, 0.15); border-left: 4px solid var(--highlight); border-radius: 4px;">
-                        <strong>Step 1:</strong> Starting explanation...
-                    </div>
-                    
-                    <!-- Context -->
-                    <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: var(--text-dim); font-family: 'Space Mono', monospace; padding: 1rem 0;">
-                        <span id="cotProgress">Step <strong style="color: var(--secondary);">1</strong> of <strong>5</strong></span>
-                        <span style="color: var(--highlight);">⚡ Interactive Chain-of-Thought</span>
-                    </div>
-                </div>
-                </div>
-                
-                <!-- Text (CoT) Demo Content -->
-                <div id="demo-text" class="demo-content">
-                <div style="max-width: 1000px; margin: 0 auto;">
-                    <!-- Question -->
-                    <div style="background: rgba(78, 205, 196, 0.1); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; border-left: 4px solid var(--secondary);">
-                        <h4 style="color: var(--secondary); margin-bottom: 0.8rem;">Question:</h4>
-                        <p style="line-height: 1.7;">A bathroom has <span style="background: rgba(255,107,53,0.3); padding: 0.2rem 0.4rem; border-radius: 3px; color: var(--accent); font-weight: bold;">10 6-inch tiles</span> along its width and <span style="background: rgba(255,107,53,0.3); padding: 0.2rem 0.4rem; border-radius: 3px; color: var(--accent); font-weight: bold;">20 6-inch tiles</span> along its length.</p>
-                        <p style="margin-top: 0.5rem; font-weight: bold; color: var(--highlight);">What is the square footage of the bathroom?</p>
-                    </div>
-                    
-                    <!-- Static text display (traditional CoT - no navigation) -->
-                    <div style="background: white; padding: 2rem; border-radius: 8px; min-height: 400px; border: 2px solid #e5e7eb;">
-                        <div style="color: #1e293b; line-height: 1.8;">
-                            <p style="margin-bottom: 1.5rem;"><strong style="color: var(--secondary);">Step 1:</strong> Calculate the total width of the bathroom in inches. We know there are 10 tiles along the width, and each tile is 6 inches. Width in inches = Number of tiles × Tile length = 10 × 6 = 60 inches</p>
-                            
-                            <p style="margin-bottom: 1.5rem;"><strong style="color: var(--secondary);">Step 2:</strong> Convert the width from inches to feet. To convert inches to feet, we divide by 12 (since 1 foot = 12 inches). Width in feet = 60 inches ÷ 12 = 5 feet</p>
-                            
-                            <p style="margin-bottom: 1.5rem;"><strong style="color: var(--secondary);">Step 3:</strong> Calculate the total length of the bathroom in inches. We know there are 20 tiles along the length, and each tile is 6 inches. Length in inches = Number of tiles × Tile length = 20 × 6 = 120 inches</p>
-                            
-                            <p style="margin-bottom: 1.5rem;"><strong style="color: var(--secondary);">Step 4:</strong> Convert the length from inches to feet. To convert inches to feet, we divide by 12. Length in feet = 120 inches ÷ 12 = 10 feet</p>
-                            
-                            <p style="margin-bottom: 1.5rem;"><strong style="color: var(--secondary);">Step 5:</strong> Calculate the square footage of the bathroom. The area is calculated by multiplying the length by the width. Area = Length × Width = 10 feet × 5 feet = 50 square feet</p>
-                            
-                            <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(46, 204, 113, 0.15); border-left: 4px solid #2ECC71; border-radius: 6px;">
-                                <strong style="color: #2ECC71;">Final Answer:</strong> The bathroom is 50 square feet.
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Note about traditional format -->
-                    <div style="margin-top: 1.5rem; padding: 1.2rem; background: rgba(255, 107, 53, 0.15); border-left: 4px solid var(--accent); border-radius: 4px;">
-                        <strong>Traditional CoT Format:</strong> This is the standard text-based output without interactivity. All steps are shown at once, which can lead to higher cognitive load and slower verification compared to the interactive formats above.
-                    </div>
-                    
-                    <!-- Context -->
-                    <div style="display: flex; justify-content: center; align-items: center; font-size: 0.85rem; color: var(--text-dim); font-family: 'Space Mono', monospace; padding: 1rem 0;">
-                        <span style="color: var(--accent);">📄 Traditional Static Text Format</span>
-                    </div>
-                </div>
                 </div>
             </div>
         </div>
@@ -1273,6 +1237,7 @@
     <script>
         // Function to switch between demo formats
         function switchDemoFormat(format) {
+            
             // Hide all demo contents
             document.querySelectorAll('.demo-content').forEach(content => {
                 content.classList.remove('active');
@@ -1284,19 +1249,36 @@
             });
             
             // Show selected demo content
-            document.getElementById('demo-' + format).classList.add('active');
-            
-            // Activate selected tab
-            event.target.classList.add('active');
-            
-            // Initialize the selected demo
-            if (format === 'igraph') {
-                initIGraphDemo();
-            } else if (format === 'ipot') {
-                initIPoTDemo();
-            } else if (format === 'icot') {
-                initICoTDemo();
+            const selectedDemo = document.getElementById('demo-' + format);
+            if (selectedDemo) {
+                selectedDemo.classList.add('active');
+            } else {
             }
+            
+            // Activate selected tab by finding it through the onclick attribute
+            document.querySelectorAll('.demo-tab').forEach(tab => {
+                if (tab.getAttribute('onclick').includes(format)) {
+                    tab.classList.add('active');
+                }
+            });
+            
+            // Initialize the selected demo with a small delay to ensure DOM is visible
+            setTimeout(() => {
+                if (format === 'igraph') {
+                    // Reset and reinitialize iGraph
+                    currentDemoStep = 0;
+                    isPlaying = false;
+                    initDemo();
+                } else if (format === 'ipot') {
+                    potCurrentStep = 0;
+                    potPlaying = false;
+                    initIPoTDemo();
+                } else if (format === 'icot') {
+                    cotCurrentStep = 0;
+                    cotPlaying = false;
+                    initICoTDemo();
+                }
+            }, 200);
             // Text format has no initialization (static display)
         }
         
@@ -1355,12 +1337,11 @@
         let isPlaying = false;
         let playInterval = null;
         let nodePositions = {};
-        let draggedNode = null;
-        let showingFormulas = {};
 
         let svg, playPauseBtn, stopBtn, prevBtn, nextBtn;
 
         function initDemo() {
+            
             // Get element references after DOM loads
             svg = document.getElementById('demoGraph');
             playPauseBtn = document.getElementById('demoPlayPause');
@@ -1368,27 +1349,68 @@
             prevBtn = document.getElementById('demoPrev');
             nextBtn = document.getElementById('demoNext');
             
+            
             if (!svg) {
-                console.error('Demo graph SVG not found');
+                // Retry after a short delay
+                setTimeout(initDemo, 200);
                 return;
             }
             
+            
             // Initialize node positions
             Object.values(demoData.nodes).forEach(node => {
-                nodePositions[node.id] = { x: node.x, y: node.y };
+                if (!nodePositions[node.id]) {
+                    nodePositions[node.id] = { x: node.x, y: node.y };
+                }
             });
             
-            // Set up event listeners
-            playPauseBtn.onclick = () => isPlaying ? pause() : play();
-            stopBtn.onclick = stop;
-            prevBtn.onclick = () => { if (currentDemoStep > 0) { currentDemoStep--; renderStep(); }};
-            nextBtn.onclick = () => { if (currentDemoStep < demoData.steps.length - 1) { currentDemoStep++; renderStep(); }};
+            // Set up event listeners with safety checks
+            if (playPauseBtn) {
+                playPauseBtn.onclick = () => {
+                    isPlaying ? pause() : play();
+                };
+            } else {
+            }
+            
+            if (stopBtn) {
+                stopBtn.onclick = stop;
+            } else {
+            }
+            
+            if (prevBtn) {
+                prevBtn.onclick = () => { 
+                    if (currentDemoStep > 0) { 
+                        currentDemoStep--; 
+                        renderStep(); 
+                    }
+                };
+            } else {
+            }
+            
+            if (nextBtn) {
+                nextBtn.addEventListener('click', (e) => {
+                    try {
+                        if (currentDemoStep < demoData.steps.length - 1) { 
+                            currentDemoStep++; 
+                            renderStep(); 
+                        } else {
+                        }
+                    } catch (error) {
+                    }
+                });
+            } else {
+            }
             
             renderStep();
         }
 
         function renderStep() {
             const step = demoData.steps[currentDemoStep];
+            
+            if (!svg) {
+                return;
+            }
+            
             
             // Clear SVG (keep defs)
             while (svg.children.length > 1) svg.removeChild(svg.lastChild);
@@ -1404,31 +1426,37 @@
             
             // Update iframe with step information
             const iframe = document.getElementById('demoStepIframe');
-            let content = `
-                <div style="padding: 20px; font-family: Arial, sans-serif; min-height: 100%;">
-                    <div style="background: #FFF3CD; border-left: 3px solid #FFC107; padding: 15px; border-radius: 5px;">
-                        <strong>Step ${currentDemoStep + 1}:</strong> ${step.title}
-                        <br><br>
-                        <span style="color: #666;">${step.desc}</span>
-                    </div>
-            `;
-            
-            if (currentDemoStep === demoData.steps.length - 1) {
-                content += `
-                    <div style="background: #d4edda; border: 1px solid #c3e6cb; color: #155724; padding: 15px; border-radius: 5px; margin-top: 10px;">
-                        <strong>Final Answer:</strong> The bathroom is 50 square feet.
-                    </div>
+            if (iframe) {
+                let content = `
+                    <div style="padding: 20px; font-family: Arial, sans-serif; min-height: 100%;">
+                        <div style="background: #FFF3CD; border-left: 3px solid #FFC107; padding: 15px; border-radius: 5px;">
+                            <strong>Step ${currentDemoStep + 1}:</strong> ${step.title}
+                            <br><br>
+                            <span style="color: #666;">${step.desc}</span>
+                        </div>
                 `;
+                
+                if (currentDemoStep === demoData.steps.length - 1) {
+                    content += `
+                        <div style="background: #d4edda; border: 1px solid #c3e6cb; color: #155724; padding: 15px; border-radius: 5px; margin-top: 10px;">
+                            <strong>Final Answer:</strong> The bathroom is 50 square feet.
+                        </div>
+                    `;
+                }
+                
+                content += `</div>`;
+                
+                iframe.srcdoc = content;
             }
-            
-            content += `</div>`;
-            
-            iframe.srcdoc = content;
             
             updateButtons();
         }
 
         function drawNode(node) {
+            if (!svg) {
+                return;
+            }
+            
             const pos = nodePositions[node.id];
             const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
             g.setAttribute('data-node-id', node.id);
@@ -1494,6 +1522,10 @@
         }
 
         function drawEdge(edge, visibleNodes) {
+            if (!svg) {
+                return;
+            }
+            
             const fromNode = Object.values(demoData.nodes).find(n => n.id === edge.from);
             const toNode = Object.values(demoData.nodes).find(n => n.id === edge.to);
             if (!fromNode || !toNode) return;
@@ -1536,11 +1568,13 @@
         }
 
         function startDrag(e, node) {
-            draggedNode = node;
+            if (!svg) return;
+            
             const startX = e.clientX, startY = e.clientY;
             const startPos = { ...nodePositions[node.id] };
             
             function onMove(e) {
+                if (!svg) return;
                 const rect = svg.getBoundingClientRect();
                 const dx = (e.clientX - startX) * (900 / rect.width);
                 const dy = (e.clientY - startY) * (400 / rect.height);
@@ -1589,10 +1623,14 @@
         }
 
         function updateButtons() {
-            prevBtn.disabled = currentDemoStep === 0;
-            nextBtn.disabled = currentDemoStep === demoData.steps.length - 1;
-            prevBtn.style.opacity = prevBtn.disabled ? '0.4' : '1';
-            nextBtn.style.opacity = nextBtn.disabled ? '0.4' : '1';
+            if (prevBtn) {
+                prevBtn.disabled = currentDemoStep === 0;
+                prevBtn.style.opacity = prevBtn.disabled ? '0.4' : '1';
+            }
+            if (nextBtn) {
+                nextBtn.disabled = currentDemoStep === demoData.steps.length - 1;
+                nextBtn.style.opacity = nextBtn.disabled ? '0.4' : '1';
+            }
         }
         
         // Initialize iGraph Demo - wait for DOM to be ready
@@ -1639,35 +1677,59 @@
         
         function initIPoTDemo() {
             potCurrentStep = 0;
+            
+            const playPauseBtn = document.getElementById('potPlayPause');
+            const stopBtn = document.getElementById('potStop');
+            const prevBtn = document.getElementById('potPrev');
+            const nextBtn = document.getElementById('potNext');
+            
+            
             updatePoTDisplay();
             
-            document.getElementById('potPlayPause').onclick = () => {
-                if (potPlaying) {
+            if (playPauseBtn) {
+                playPauseBtn.onclick = () => {
+                    if (potPlaying) {
+                        pausePoT();
+                    } else {
+                        playPoT();
+                    }
+                };
+            } else {
+            }
+            
+            if (stopBtn) {
+                stopBtn.onclick = () => {
                     pausePoT();
-                } else {
-                    playPoT();
-                }
-            };
-            
-            document.getElementById('potStop').onclick = () => {
-                pausePoT();
-                potCurrentStep = 0;
-                updatePoTDisplay();
-            };
-            
-            document.getElementById('potPrev').onclick = () => {
-                if (potCurrentStep > 0) {
-                    potCurrentStep--;
+                    potCurrentStep = 0;
                     updatePoTDisplay();
-                }
-            };
+                };
+            } else {
+            }
             
-            document.getElementById('potNext').onclick = () => {
-                if (potCurrentStep < potSteps.length - 1) {
-                    potCurrentStep++;
-                    updatePoTDisplay();
-                }
-            };
+            if (prevBtn) {
+                prevBtn.onclick = () => {
+                    if (potCurrentStep > 0) {
+                        potCurrentStep--;
+                        updatePoTDisplay();
+                    }
+                };
+            } else {
+            }
+            
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    try {
+                        if (potCurrentStep < potSteps.length - 1) {
+                            potCurrentStep++;
+                            updatePoTDisplay();
+                        } else {
+                        }
+                    } catch (error) {
+                    }
+                });
+            } else {
+            }
+            
         }
         
         function updatePoTDisplay() {
@@ -1677,39 +1739,60 @@
             for (let i = 0; i <= potCurrentStep; i++) {
                 const s = potSteps[i];
                 const opacity = i === potCurrentStep ? '1' : '0.5';
-                const highlight = i === potCurrentStep ? 'background: rgba(78, 205, 196, 0.2); border-left: 3px solid var(--secondary); padding-left: 1rem;' : '';
-                codeHTML += `<div style="margin-bottom: 0.5rem; opacity: ${opacity}; ${highlight} transition: all 0.3s;">${s.code}</div>`;
+                const highlight = i === potCurrentStep ? 'background: rgba(78, 205, 196, 0.2); border-left: 3px solid #4ECDC4; padding-left: 1rem;' : '';
+                codeHTML += `<div style="margin-bottom: 0.5rem; opacity: ${opacity}; ${highlight} transition: all 0.3s; color: #1e293b;">${s.code}</div>`;
             }
             
-            document.getElementById('potCode').innerHTML = '<div style="color: #888; margin-bottom: 1rem;"># Python Solution</div>' + codeHTML;
+            const potCodeEl = document.getElementById('potCode');
+            if (potCodeEl) {
+                potCodeEl.innerHTML = '<div style="color: #64748b; margin-bottom: 1rem; font-weight: bold;"># Python Solution</div>' + codeHTML;
+            } else {
+            }
             
             // Update variables
             let varsHTML = '';
             for (const [key, value] of Object.entries(step.variables)) {
-                varsHTML += `<div style="padding: 0.5rem; background: rgba(255,255,255,0.05); border-radius: 4px;"><span style="color: var(--secondary); font-weight: bold;">${key}</span> = <span style="color: var(--highlight);">${value}</span></div>`;
+                varsHTML += `<div style="padding: 0.5rem; background: #f1f5f9; border-radius: 4px; border: 1px solid #e2e8f0;"><span style="color: #4ECDC4; font-weight: bold;">${key}</span> = <span style="color: #FF6B35; font-weight: bold;">${value}</span></div>`;
             }
             
             // Add final answer to variables section on last step
             if (potCurrentStep === potSteps.length - 1) {
                 varsHTML += `
-                    <div style="grid-column: 1 / -1; margin-top: 1rem; padding: 1rem; background: rgba(46, 204, 113, 0.2); border: 1px solid #2ecc71; border-radius: 6px;">
-                        <strong style="color: #2ecc71; font-size: 1.05rem;">✓ Final Answer: 50 square feet</strong>
+                    <div style="grid-column: 1 / -1; margin-top: 1rem; padding: 1rem; background: #d4edda; border: 1px solid #c3e6cb; border-radius: 6px;">
+                        <strong style="color: #155724; font-size: 1.05rem;">✓ Final Answer: 50 square feet</strong>
                     </div>
                 `;
             }
             
-            document.getElementById('potVariables').innerHTML = varsHTML;
+            const potVariablesEl = document.getElementById('potVariables');
+            if (potVariablesEl) {
+                potVariablesEl.innerHTML = varsHTML;
+            } else {
+            }
             
-            document.getElementById('potStepDesc').innerHTML = `<strong>Step ${potCurrentStep + 1}:</strong> ${step.desc}`;
-            document.getElementById('potProgress').innerHTML = `Step <strong style="color: var(--secondary);">${potCurrentStep + 1}</strong> of <strong>${potSteps.length}</strong>`;
+            // Update progress and description safely
+            const potProgressEl = document.getElementById('potProgress');
+            if (potProgressEl) {
+                potProgressEl.innerHTML = `Step <strong style="color: #4ECDC4;">${potCurrentStep + 1}</strong> of <strong style="color: #1e293b;">${potSteps.length}</strong>`;
+            }
+            
+            const potStepDescEl = document.getElementById('potStepDesc');
+            if (potStepDescEl) {
+                potStepDescEl.innerHTML = `
+                    <div style="margin-bottom: 0.5rem; color: #1e293b;"><span id="potProgress">Step <strong style="color: #4ECDC4;">${potCurrentStep + 1}</strong> of <strong>${potSteps.length}</strong></span></div>
+                    <strong style="color: #1e293b;">Step ${potCurrentStep + 1}:</strong> <span style="color: #1e293b;">${step.desc}</span>
+                `;
+            }
             
             // Update buttons
             const potPrevBtn = document.getElementById('potPrev');
             const potNextBtn = document.getElementById('potNext');
-            potPrevBtn.disabled = potCurrentStep === 0;
-            potNextBtn.disabled = potCurrentStep === potSteps.length - 1;
-            potPrevBtn.style.opacity = potPrevBtn.disabled ? '0.4' : '1';
-            potNextBtn.style.opacity = potNextBtn.disabled ? '0.4' : '1';
+            if (potPrevBtn && potNextBtn) {
+                potPrevBtn.disabled = potCurrentStep === 0;
+                potNextBtn.disabled = potCurrentStep === potSteps.length - 1;
+                potPrevBtn.style.opacity = potPrevBtn.disabled ? '0.4' : '1';
+                potNextBtn.style.opacity = potNextBtn.disabled ? '0.4' : '1';
+            }
         }
         
         function playPoT() {
@@ -1771,33 +1854,46 @@
             cotCurrentStep = 0;
             updateCoTDisplay();
             
-            document.getElementById('cotPlayPause').onclick = () => {
-                if (cotPlaying) {
+            const playPauseBtn = document.getElementById('cotPlayPause');
+            const stopBtn = document.getElementById('cotStop');
+            const prevBtn = document.getElementById('cotPrev');
+            const nextBtn = document.getElementById('cotNext');
+            
+            if (playPauseBtn) {
+                playPauseBtn.onclick = () => {
+                    if (cotPlaying) {
+                        pauseCoT();
+                    } else {
+                        playCoT();
+                    }
+                };
+            }
+            
+            if (stopBtn) {
+                stopBtn.onclick = () => {
                     pauseCoT();
-                } else {
-                    playCoT();
-                }
-            };
-            
-            document.getElementById('cotStop').onclick = () => {
-                pauseCoT();
-                cotCurrentStep = 0;
-                updateCoTDisplay();
-            };
-            
-            document.getElementById('cotPrev').onclick = () => {
-                if (cotCurrentStep > 0) {
-                    cotCurrentStep--;
+                    cotCurrentStep = 0;
                     updateCoTDisplay();
-                }
-            };
+                };
+            }
             
-            document.getElementById('cotNext').onclick = () => {
-                if (cotCurrentStep < cotSteps.length - 1) {
-                    cotCurrentStep++;
-                    updateCoTDisplay();
-                }
-            };
+            if (prevBtn) {
+                prevBtn.onclick = () => {
+                    if (cotCurrentStep > 0) {
+                        cotCurrentStep--;
+                        updateCoTDisplay();
+                    }
+                };
+            }
+            
+            if (nextBtn) {
+                nextBtn.onclick = () => {
+                    if (cotCurrentStep < cotSteps.length - 1) {
+                        cotCurrentStep++;
+                        updateCoTDisplay();
+                    }
+                };
+            }
         }
         
         function updateCoTDisplay() {
@@ -1807,13 +1903,13 @@
                 const step = cotSteps[i];
                 const isActive = i === cotCurrentStep;
                 const bgColor = isActive ? 'rgba(78, 205, 196, 0.15)' : 'rgba(248, 249, 250, 0.5)';
-                const borderColor = isActive ? 'var(--secondary)' : '#e5e7eb';
+                const borderColor = isActive ? '#4ECDC4' : '#e5e7eb';
                 
                 stepsHTML += `
-                    <div style="margin-bottom: 1.5rem; padding: 1.5rem; background: ${bgColor}; border-left: 4px solid ${borderColor}; border-radius: 6px; transition: all 0.3s;">
-                        <div style="font-weight: bold; color: var(--secondary); margin-bottom: 0.8rem; font-size: 1.05rem;">Step ${i + 1}: ${step.title}</div>
-                        <p style="margin-bottom: 0.8rem; line-height: 1.7; color: #334155;">${step.content}</p>
-                        <div style="background: white; padding: 1rem; border-radius: 4px; border: 1px solid #e5e7eb; font-family: 'Courier New', monospace; color: #1e293b;">
+                    <div style="margin-bottom: 1.2rem; padding: 1.2rem; background: ${bgColor}; border-left: 4px solid ${borderColor}; border-radius: 6px; transition: all 0.3s;">
+                        <div style="font-weight: bold; color: #4ECDC4; margin-bottom: 0.6rem; font-size: 0.95rem;">Step ${i + 1}: ${step.title}</div>
+                        <p style="margin-bottom: 0.6rem; line-height: 1.5; color: #334155; font-size: 0.9rem;">${step.content}</p>
+                        <div style="background: white; padding: 0.8rem; border-radius: 4px; border: 1px solid #e5e7eb; font-family: 'Courier New', monospace; color: #1e293b; font-size: 0.85rem;">
                             ${step.formula}
                         </div>
                     </div>
@@ -1823,23 +1919,48 @@
             // Add final answer block on last step
             if (cotCurrentStep === cotSteps.length - 1) {
                 stepsHTML += `
-                    <div style="margin-top: 2rem; padding: 1.5rem; background: #d4edda; border: 1px solid #c3e6cb; color: #155724; border-radius: 6px;">
-                        <strong style="font-size: 1.1rem;">Final Answer:</strong> The bathroom is 50 square feet.
+                    <div style="margin-top: 1.5rem; padding: 1.2rem; background: #d4edda; border: 1px solid #c3e6cb; color: #155724; border-radius: 6px;">
+                        <strong style="font-size: 1rem;">Final Answer:</strong> The bathroom is 50 square feet.
                     </div>
                 `;
             }
             
-            document.getElementById('cotSteps').innerHTML = stepsHTML;
-            document.getElementById('cotStepDesc').innerHTML = `<strong>Step ${cotCurrentStep + 1}:</strong> ${cotSteps[cotCurrentStep].title}`;
-            document.getElementById('cotProgress').innerHTML = `Step <strong style="color: var(--secondary);">${cotCurrentStep + 1}</strong> of <strong>${cotSteps.length}</strong>`;
+            const cotStepsEl = document.getElementById('cotSteps');
+            if (cotStepsEl) {
+                cotStepsEl.innerHTML = stepsHTML;
+                
+                // Auto-scroll to bottom after rendering
+                // Get the parent scrolling container
+                const scrollContainer = cotStepsEl.parentElement;
+                if (scrollContainer) {
+                    setTimeout(() => {
+                        scrollContainer.scrollTop = scrollContainer.scrollHeight;
+                    }, 100);
+                }
+            }
+            
+            const cotProgressEl = document.getElementById('cotProgress');
+            if (cotProgressEl) {
+                cotProgressEl.innerHTML = `Step <strong style="color: #4ECDC4;">${cotCurrentStep + 1}</strong> of <strong style="color: #1e293b;">${cotSteps.length}</strong>`;
+            }
+            
+            const cotStepDescEl = document.getElementById('cotStepDesc');
+            if (cotStepDescEl) {
+                cotStepDescEl.innerHTML = `
+                    <div style="margin-bottom: 0.5rem; color: #1e293b;"><span id="cotProgress">Step <strong style="color: #4ECDC4;">${cotCurrentStep + 1}</strong> of <strong>${cotSteps.length}</strong></span></div>
+                    <strong style="color: #1e293b;">Step ${cotCurrentStep + 1}:</strong> <span style="color: #1e293b;">${cotSteps[cotCurrentStep].title}</span>
+                `;
+            }
             
             // Update buttons
             const cotPrevBtn = document.getElementById('cotPrev');
             const cotNextBtn = document.getElementById('cotNext');
-            cotPrevBtn.disabled = cotCurrentStep === 0;
-            cotNextBtn.disabled = cotCurrentStep === cotSteps.length - 1;
-            cotPrevBtn.style.opacity = cotPrevBtn.disabled ? '0.4' : '1';
-            cotNextBtn.style.opacity = cotNextBtn.disabled ? '0.4' : '1';
+            if (cotPrevBtn && cotNextBtn) {
+                cotPrevBtn.disabled = cotCurrentStep === 0;
+                cotNextBtn.disabled = cotCurrentStep === cotSteps.length - 1;
+                cotPrevBtn.style.opacity = cotPrevBtn.disabled ? '0.4' : '1';
+                cotNextBtn.style.opacity = cotNextBtn.disabled ? '0.4' : '1';
+            }
         }
         
         function playCoT() {
@@ -1931,7 +2052,6 @@
         // Initialize iGraph demo by default on page load
         initIGraphDemo();
         
-        // Update GitHub links placeholder text if needed
     </script>
 
 </body>
