@@ -844,9 +844,7 @@
                                     
                                     <p style="margin-bottom: 1.2rem; font-size: 0.9rem;"><strong style="color: #4ECDC4;">Step 5:</strong> Calculate the square footage of the bathroom. The area is calculated by multiplying the length by the width. Area = Length × Width = 10 feet × 5 feet = 50 square feet</p>
                                     
-                                    <div style="margin-top: 1.5rem; padding: 1.2rem; background: #d4edda; border: 1px solid #c3e6cb; color: #155724; border-radius: 6px;">
-                                        <strong style="font-size: 1rem;">Final Answer:</strong> The bathroom is 50 square feet.
-                                    </div>
+                                    <p style="margin-top: 1.5rem; font-size: 0.9rem;"><strong>Final Answer:</strong> The bathroom is 50 square feet.</p>
                                 </div>
                             </div>
                             
@@ -1601,14 +1599,24 @@
         }
 
         function play() {
+            if (currentDemoStep >= demoData.steps.length - 1) {
+                return; // Already at the end
+            }
+            
             isPlaying = true;
             playPauseBtn.textContent = '⏸ Pause';
+            
+            // Advance immediately
+            currentDemoStep++;
+            renderStep();
+            
+            // Then continue with interval
             playInterval = setInterval(() => {
-                if (currentStep < steps.length - 1) {
-                    currentStep++;
-                    render();
+                if (currentDemoStep < demoData.steps.length - 1) {
+                    currentDemoStep++;
+                    renderStep();
                 } else {
-                    pause();  // ✅ Only pause when reaching the end
+                    pause();
                 }
             }, 2000);
         }
@@ -1801,12 +1809,23 @@
         }
         
         function playPoT() {
+            if (potCurrentStep >= potSteps.length - 1) {
+                return; // Already at the end
+            }
+            
             potPlaying = true;
             document.getElementById('potPlayPause').textContent = '⏸ Pause';
+            
+            // Advance immediately
+            potCurrentStep++;
+            updatePoTDisplay();
+            
+            // Then continue with interval
             potInterval = setInterval(() => {
                 if (potCurrentStep < potSteps.length - 1) {
                     potCurrentStep++;
                     updatePoTDisplay();
+                } else {
                     pausePoT();
                 }
             }, 2000);
@@ -1968,12 +1987,23 @@
         }
         
         function playCoT() {
+            if (cotCurrentStep >= cotSteps.length - 1) {
+                return; // Already at the end
+            }
+            
             cotPlaying = true;
             document.getElementById('cotPlayPause').textContent = '⏸ Pause';
+            
+            // Advance immediately
+            cotCurrentStep++;
+            updateCoTDisplay();
+            
+            // Then continue with interval
             cotInterval = setInterval(() => {
                 if (cotCurrentStep < cotSteps.length - 1) {
                     cotCurrentStep++;
                     updateCoTDisplay();
+                } else {
                     pauseCoT();
                 }
             }, 2000);
