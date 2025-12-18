@@ -396,35 +396,42 @@
         /* Demo Tabs */
         .demo-tabs {
             display: flex;
-            gap: 1rem;
-            justify-content: center;
-            margin-bottom: 2.5rem;
-            flex-wrap: wrap;
+            gap: 0;
+            justify-content: flex-end;
+            margin-bottom: 0;
         }
         
         .demo-tab {
-            padding: 0.8rem 2rem;
+            padding: 0.9rem 1.8rem;
             font-family: 'Space Mono', monospace;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: bold;
-            background: var(--bg-card);
-            color: var(--text-dim);
-            border: 2px solid var(--text-dim);
-            border-radius: 4px;
+            background: linear-gradient(135deg, #e0f2f1 0%, #b2dfdb 100%);
+            color: #00695c;
+            border: 2px solid #4db6ac;
+            border-bottom: none;
+            border-radius: 12px 12px 0 0;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-left: -2px;
         }
         
-        .demo-tab:hover {
-            border-color: var(--secondary);
-            color: var(--secondary);
-            transform: translateY(-2px);
+        .demo-tab:first-child {
+            margin-left: 0;
+        }
+        
+        .demo-tab:hover:not(.active) {
+            background: linear-gradient(135deg, #b2dfdb 0%, #80cbc4 100%);
+            color: #00695c;
+            filter: brightness(1.05);
         }
         
         .demo-tab.active {
-            background: var(--secondary);
-            color: var(--primary);
-            border-color: var(--secondary);
+            background: linear-gradient(135deg, #4ECDC4 0%, #3ab5ac 100%);
+            color: #ffffff;
+            border-color: #4ECDC4;
+            border-bottom: none;
+            z-index: 10;
         }
         
         .demo-content {
@@ -435,6 +442,8 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.25s ease-in-out;
         }
         
         .demo-content.active {
@@ -655,7 +664,7 @@
                     <a href="https://arxiv.org/abs/2510.22922" class="btn btn-primary" target="_blank">📄 Read Paper</a>
                     <a href="https://github.com/Runtaozhou/Interactive-CoT" class="btn btn-secondary" target="_blank">💻 GitHub Repo</a>
                     <a href="https://huggingface.co/spaces/Miles1999/interactive-llm-xai-TEST" class="btn btn-secondary" target="_blank">🤗 HF Interactive Demo</a>
-                    <a href="https://www.youtube.com/watch?v=_AVPUMP4jiY&t=1s" class="btn btn-secondary" target="_blank">🎥 2-Min Summary Video</a>
+                    <a href="https://www.youtube.com/watch?v=_AVPUMP4jiY&t=1s" class="btn btn-secondary" target="_blank">🎥 Summary Video</a>
                     <a href="#" class="btn btn-secondary" onclick="showBibtex(event)" target="_blank">📋 BibTeX Citation</a>
                 </div>
                 
@@ -711,7 +720,7 @@
             <div style="margin: 3rem 0; background: var(--bg-card); padding: 2.5rem; border: 2px solid var(--secondary); border-radius: 8px;">
                 <h3 style="color: var(--highlight); margin-bottom: 1.5rem; text-align: center;">Try the Interactive Explanation Formats</h3>
                 <p style="text-align: center; color: var(--text-dim); margin-bottom: 2rem;">
-                    Experience how our three interactive formats help you verify LLM reasoning • <strong>Drag nodes</strong> to rearrange • <strong>Hover</strong> for details
+                    Experience how our three interactive formats help you verify LLM reasoning
                 </p>
                 
                 <!-- Format Tabs -->
@@ -723,19 +732,19 @@
                 </div>
                 
                 <!-- Shared Dual Panel Layout -->
-                <div style="display: flex; height: 600px; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1);">
+                <div style="display: flex; height: 600px; background: white; border-radius: 8px 0 8px 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1), inset 0 2px 4px rgba(0,0,0,0.06); border: 2px solid #ddd; border-top: none;">
                     <!-- Left Panel (Shared across all formats) -->
                     <div style="width: 30%; background: white; padding: 20px; overflow-y: auto; border-right: 2px solid #ddd;">
                         <div style="margin-bottom: 30px;">
                             <div style="font-size: 18px; font-weight: bold; color: #2c3e50; margin-bottom: 15px; border-bottom: 2px solid #3498db; padding-bottom: 5px;">Problem Statement</div>
-                            <p style="font-size: 15px; line-height: 1.6; color: #34495e;">A bathroom has <span style="background-color: #ff634780; padding: 2px 6px; border-radius: 5px; color: black;">10 6-inch tiles</span> along its width and <span style="background-color: #ff634780; padding: 2px 6px; border-radius: 5px; color: black;">20 6-inch tiles</span> along its length. What is the square footage of the bathroom?</p>
+                            <p style="font-size: 15px; line-height: 1.6; color: #34495e;">A bathroom has <span style="background-color: #ff634780; padding: 2px 6px; border-radius: 5px; color: black; font-weight: 600;">10 6-inch tiles</span> along its width and <span style="background-color: #87cefa80; padding: 2px 6px; border-radius: 5px; color: black; font-weight: 600;">20 6-inch tiles</span> along its length. What is the square footage of the bathroom?</p>
                         </div>
                         
                         <div>
                             <div style="font-size: 18px; font-weight: bold; color: #2c3e50; margin-bottom: 15px; border-bottom: 2px solid #3498db; padding-bottom: 5px;">Problem Summary</div>
                             <ul style="list-style-type: disc; margin-left: 20px; margin-bottom: 15px;">
-                                <li style="font-size: 14px; line-height: 1.6; margin-bottom: 8px; color: #34495e;"><span style="background-color: #ff634780; padding: 2px 6px; border-radius: 5px;">Width: 10 tiles × 6 inches</span></li>
-                                <li style="font-size: 14px; line-height: 1.6; margin-bottom: 8px; color: #34495e;"><span style="background-color: #87cefa80; padding: 2px 6px; border-radius: 5px;">Length: 20 tiles × 6 inches</span></li>
+                                <li style="font-size: 14px; line-height: 1.6; margin-bottom: 8px; color: #34495e;"><span style="background-color: #ff634780; padding: 2px 6px; border-radius: 5px; font-weight: 600;">Width: 10 tiles × 6 inches</span></li>
+                                <li style="font-size: 14px; line-height: 1.6; margin-bottom: 8px; color: #34495e;"><span style="background-color: #87cefa80; padding: 2px 6px; border-radius: 5px; font-weight: 600;">Length: 20 tiles × 6 inches</span></li>
                             </ul>
                             <div style="font-weight: bold; color: #2c3e50;"><strong>Goal:</strong> Calculate the square footage of the bathroom</div>
                         </div>
@@ -1213,9 +1222,6 @@
                     <strong style="color: var(--secondary);">Click to visit our HuggingFace Space →</strong>
                 </div>
             </div>
-            <p style="text-align: center; margin-top: 1.5rem; color: var(--text-dim);">
-                <em>Note: Update the HuggingFace link above with your actual Space URL</em>
-            </p>
         </div>
     </section>
 
@@ -1237,10 +1243,15 @@
     <script>
         // Function to switch between demo formats
         function switchDemoFormat(format) {
+            // Get the content container for fade effect
+            const selectedDemo = document.getElementById('demo-' + format);
             
-            // Hide all demo contents
+            // Hide all demo contents with fade out
             document.querySelectorAll('.demo-content').forEach(content => {
-                content.classList.remove('active');
+                content.style.opacity = '0';
+                setTimeout(() => {
+                    content.classList.remove('active');
+                }, 150);
             });
             
             // Remove active class from all tabs
@@ -1248,11 +1259,14 @@
                 tab.classList.remove('active');
             });
             
-            // Show selected demo content
-            const selectedDemo = document.getElementById('demo-' + format);
+            // Show selected demo content with fade in
             if (selectedDemo) {
-                selectedDemo.classList.add('active');
-            } else {
+                setTimeout(() => {
+                    selectedDemo.classList.add('active');
+                    setTimeout(() => {
+                        selectedDemo.style.opacity = '1';
+                    }, 50);
+                }, 150);
             }
             
             // Activate selected tab by finding it through the onclick attribute
@@ -1278,41 +1292,41 @@
                     cotPlaying = false;
                     initICoTDemo();
                 }
-            }, 200);
+            }, 300);
             // Text format has no initialization (static display)
         }
         
         // iGraph Demo Data
         const demoData = {
             nodes: {
-                width60: { id: 'w60', x: 150, y: 100, label: 'Width', value: '60 in', calc: '10 × 6', color: 'rgba(255, 107, 53, 0.3)', border: '#FF6B35' },
-                width5: { id: 'w5', x: 400, y: 100, label: 'Width', value: '5 ft', calc: '60 ÷ 12', color: 'rgba(255, 201, 60, 0.3)', border: '#FFC93C' },
-                length120: { id: 'l120', x: 150, y: 250, label: 'Length', value: '120 in', calc: '20 × 6', color: 'rgba(78, 205, 196, 0.3)', border: '#4ECDC4' },
-                length10: { id: 'l10', x: 400, y: 250, label: 'Length', value: '10 ft', calc: '120 ÷ 12', color: 'rgba(78, 205, 196, 0.3)', border: '#4ECDC4' },
-                area: { id: 'area', x: 650, y: 175, label: '✓ Area', value: '50 sq ft', calc: '5 × 10', color: 'rgba(46, 204, 113, 0.3)', border: '#2ECC71' }
+                width60: { id: 'w60', x: 150, y: 100, label: 'Width', value: '60 in', calc: '10 × 6', color: '#ff634780', border: '#FF6B35' },
+                width5: { id: 'w5', x: 400, y: 100, label: 'Width', value: '5 ft', calc: '60 ÷ 12', color: '#ff634780', border: '#FF6B35' },
+                length120: { id: 'l120', x: 150, y: 250, label: 'Length', value: '120 in', calc: '20 × 6', color: '#87cefa80', border: '#87CEEB' },
+                length10: { id: 'l10', x: 400, y: 250, label: 'Length', value: '10 ft', calc: '120 ÷ 12', color: '#87cefa80', border: '#87CEEB' },
+                area: { id: 'area', x: 650, y: 175, label: '✓ Area', value: '50 sq ft', calc: '5 × 10', color: '#90ee9080', border: '#2ECC71' }
             },
             steps: [
                 {
                     title: 'Step 1: Calculate width in inches',
-                    desc: 'Width = 10 tiles × 6 inches = 60 inches',
+                    desc: 'Width = <span style="background: #ff634780; padding: 2px 4px; border-radius: 3px; font-weight: 600;">10 tiles × 6 inches = 60 inches</span>',
                     nodes: ['width60'],
                     edges: []
                 },
                 {
                     title: 'Step 2: Convert width to feet',
-                    desc: 'Width = 60 inches ÷ 12 = 5 feet',
+                    desc: 'Width = <span style="background: #ff634780; padding: 2px 4px; border-radius: 3px; font-weight: 600;">60 inches ÷ 12 = 5 feet</span>',
                     nodes: ['width60', 'width5'],
                     edges: [{ from: 'w60', to: 'w5', label: '÷12' }]
                 },
                 {
                     title: 'Step 3: Calculate length in inches',
-                    desc: 'Length = 20 tiles × 6 inches = 120 inches',
+                    desc: 'Length = <span style="background: #87cefa80; padding: 2px 4px; border-radius: 3px; font-weight: 600;">20 tiles × 6 inches = 120 inches</span>',
                     nodes: ['width60', 'width5', 'length120'],
                     edges: [{ from: 'w60', to: 'w5', label: '÷12' }]
                 },
                 {
                     title: 'Step 4: Convert length to feet',
-                    desc: 'Length = 120 inches ÷ 12 = 10 feet',
+                    desc: 'Length = <span style="background: #87cefa80; padding: 2px 4px; border-radius: 3px; font-weight: 600;">120 inches ÷ 12 = 10 feet</span>',
                     nodes: ['width60', 'width5', 'length120', 'length10'],
                     edges: [
                         { from: 'w60', to: 'w5', label: '÷12' },
@@ -1321,7 +1335,7 @@
                 },
                 {
                     title: 'Step 5: Calculate total area',
-                    desc: 'Area = 5 feet × 10 feet = 50 square feet',
+                    desc: 'Area = <span style="background: #ff634780; padding: 2px 4px; border-radius: 3px; font-weight: 600;">5 feet</span> × <span style="background: #87cefa80; padding: 2px 4px; border-radius: 3px; font-weight: 600;">10 feet</span> = <span style="background: #90ee9080; padding: 2px 4px; border-radius: 3px; font-weight: 600;">50 square feet</span>',
                     nodes: ['width60', 'width5', 'length120', 'length10', 'area'],
                     edges: [
                         { from: 'w60', to: 'w5', label: '÷12' },
@@ -1369,12 +1383,10 @@
                 playPauseBtn.onclick = () => {
                     isPlaying ? pause() : play();
                 };
-            } else {
             }
             
             if (stopBtn) {
                 stopBtn.onclick = stop;
-            } else {
             }
             
             if (prevBtn) {
@@ -1384,21 +1396,15 @@
                         renderStep(); 
                     }
                 };
-            } else {
             }
             
             if (nextBtn) {
-                nextBtn.addEventListener('click', (e) => {
-                    try {
-                        if (currentDemoStep < demoData.steps.length - 1) { 
-                            currentDemoStep++; 
-                            renderStep(); 
-                        } else {
-                        }
-                    } catch (error) {
+                nextBtn.onclick = () => {
+                    if (currentDemoStep < demoData.steps.length - 1) { 
+                        currentDemoStep++; 
+                        renderStep(); 
                     }
-                });
-            } else {
+                };
             }
             
             renderStep();
@@ -1601,7 +1607,6 @@
                 if (currentDemoStep < demoData.steps.length - 1) {
                     currentDemoStep++;
                     renderStep();
-                } else {
                     pause();
                 }
             }, 2000);
@@ -1694,7 +1699,6 @@
                         playPoT();
                     }
                 };
-            } else {
             }
             
             if (stopBtn) {
@@ -1703,7 +1707,6 @@
                     potCurrentStep = 0;
                     updatePoTDisplay();
                 };
-            } else {
             }
             
             if (prevBtn) {
@@ -1713,21 +1716,15 @@
                         updatePoTDisplay();
                     }
                 };
-            } else {
             }
             
             if (nextBtn) {
-                nextBtn.addEventListener('click', () => {
-                    try {
-                        if (potCurrentStep < potSteps.length - 1) {
-                            potCurrentStep++;
-                            updatePoTDisplay();
-                        } else {
-                        }
-                    } catch (error) {
+                nextBtn.onclick = () => {
+                    if (potCurrentStep < potSteps.length - 1) {
+                        potCurrentStep++;
+                        updatePoTDisplay();
                     }
-                });
-            } else {
+                };
             }
             
         }
@@ -1746,13 +1743,21 @@
             const potCodeEl = document.getElementById('potCode');
             if (potCodeEl) {
                 potCodeEl.innerHTML = '<div style="color: #64748b; margin-bottom: 1rem; font-weight: bold;"># Python Solution</div>' + codeHTML;
-            } else {
             }
             
             // Update variables
             let varsHTML = '';
             for (const [key, value] of Object.entries(step.variables)) {
-                varsHTML += `<div style="padding: 0.5rem; background: #f1f5f9; border-radius: 4px; border: 1px solid #e2e8f0;"><span style="color: #4ECDC4; font-weight: bold;">${key}</span> = <span style="color: #FF6B35; font-weight: bold;">${value}</span></div>`;
+                // Determine background color based on variable name
+                let bgColor = '#f1f5f9'; // default gray
+                if (key.includes('width')) {
+                    bgColor = '#ff634740'; // red for width
+                } else if (key.includes('length')) {
+                    bgColor = '#87cefa40'; // blue for length
+                } else if (key === 'bathroom_area') {
+                    bgColor = '#90ee9040'; // green for area
+                }
+                varsHTML += `<div style="padding: 0.5rem; background: ${bgColor}; border-radius: 4px; border: 1px solid #e2e8f0;"><span style="color: #4ECDC4; font-weight: bold;">${key}</span> = <span style="color: #FF6B35; font-weight: bold;">${value}</span></div>`;
             }
             
             // Add final answer to variables section on last step
@@ -1767,7 +1772,6 @@
             const potVariablesEl = document.getElementById('potVariables');
             if (potVariablesEl) {
                 potVariablesEl.innerHTML = varsHTML;
-            } else {
             }
             
             // Update progress and description safely
@@ -1802,7 +1806,6 @@
                 if (potCurrentStep < potSteps.length - 1) {
                     potCurrentStep++;
                     updatePoTDisplay();
-                } else {
                     pausePoT();
                 }
             }, 2000);
@@ -1825,28 +1828,28 @@
         const cotSteps = [
             {
                 title: 'Calculate the width of the bathroom in inches',
-                content: 'We know there are <span style="background: rgba(255,107,53,0.3); padding: 0.2rem 0.4rem; border-radius: 3px; font-weight: bold;">10 tiles</span> along the width, and each tile is <span style="background: rgba(255,107,53,0.3); padding: 0.2rem 0.4rem; border-radius: 3px; font-weight: bold;">6 inches</span>.',
-                formula: 'Width in inches = Number of tiles × Tile length = 10 × 6 = <span style="color: var(--highlight); font-weight: bold;">60 inches</span>'
+                content: 'We know there are <span style="background: #ff634780; padding: 0.2rem 0.4rem; border-radius: 3px; font-weight: 600;">10 tiles</span> along the width, and each tile is <span style="background: #ff634780; padding: 0.2rem 0.4rem; border-radius: 3px; font-weight: 600;">6 inches</span>.',
+                formula: 'Width in inches = Number of tiles × Tile length = <span style="background: #ff634780; padding: 0.2rem 0.4rem; border-radius: 3px; font-weight: 600;">10 × 6 = 60 inches</span>'
             },
             {
                 title: 'Convert the width from inches to feet',
                 content: 'To convert inches to feet, we divide by 12 (since 1 foot = 12 inches).',
-                formula: 'Width in feet = 60 inches ÷ 12 = <span style="color: var(--highlight); font-weight: bold;">5 feet</span>'
+                formula: 'Width in feet = <span style="background: #ff634780; padding: 0.2rem 0.4rem; border-radius: 3px; font-weight: 600;">60 inches ÷ 12 = 5 feet</span>'
             },
             {
                 title: 'Calculate the length of the bathroom in inches',
-                content: 'We know there are <span style="background: rgba(78,205,196,0.3); padding: 0.2rem 0.4rem; border-radius: 3px; font-weight: bold;">20 tiles</span> along the length, and each tile is <span style="background: rgba(78,205,196,0.3); padding: 0.2rem 0.4rem; border-radius: 3px; font-weight: bold;">6 inches</span>.',
-                formula: 'Length in inches = Number of tiles × Tile length = 20 × 6 = <span style="color: var(--highlight); font-weight: bold;">120 inches</span>'
+                content: 'We know there are <span style="background: #87cefa80; padding: 0.2rem 0.4rem; border-radius: 3px; font-weight: 600;">20 tiles</span> along the length, and each tile is <span style="background: #87cefa80; padding: 0.2rem 0.4rem; border-radius: 3px; font-weight: 600;">6 inches</span>.',
+                formula: 'Length in inches = Number of tiles × Tile length = <span style="background: #87cefa80; padding: 0.2rem 0.4rem; border-radius: 3px; font-weight: 600;">20 × 6 = 120 inches</span>'
             },
             {
                 title: 'Convert the length from inches to feet',
                 content: 'To convert inches to feet, we divide by 12.',
-                formula: 'Length in feet = 120 inches ÷ 12 = <span style="color: var(--highlight); font-weight: bold;">10 feet</span>'
+                formula: 'Length in feet = <span style="background: #87cefa80; padding: 0.2rem 0.4rem; border-radius: 3px; font-weight: 600;">120 inches ÷ 12 = 10 feet</span>'
             },
             {
                 title: 'Calculate the square footage of the bathroom',
                 content: 'The area is calculated by multiplying the length by the width.',
-                formula: 'Area = Length × Width = 10 × 5 = <span style="color: var(--highlight); font-weight: bold;">50 square feet</span>'
+                formula: 'Area = Length × Width = <span style="background: #87cefa80; padding: 0.2rem 0.4rem; border-radius: 3px; font-weight: 600;">10 feet</span> × <span style="background: #ff634780; padding: 0.2rem 0.4rem; border-radius: 3px; font-weight: 600;">5 feet</span> = <span style="background: #90ee9080; padding: 0.2rem 0.4rem; border-radius: 3px; font-weight: 600;">50 square feet</span>'
             }
         ];
         
@@ -1970,7 +1973,6 @@
                 if (cotCurrentStep < cotSteps.length - 1) {
                     cotCurrentStep++;
                     updateCoTDisplay();
-                } else {
                     pauseCoT();
                 }
             }, 2000);
@@ -2052,6 +2054,15 @@
         // Initialize iGraph demo by default on page load
         initIGraphDemo();
         
+        // Set initial opacity for active content
+        setTimeout(() => {
+            const activeContent = document.querySelector('.demo-content.active');
+            if (activeContent) {
+                activeContent.style.opacity = '1';
+            }
+        }, 100);
+        
+        // Update GitHub links placeholder text if needed
     </script>
 
 </body>
