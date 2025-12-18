@@ -1604,10 +1604,11 @@
             isPlaying = true;
             playPauseBtn.textContent = '⏸ Pause';
             playInterval = setInterval(() => {
-                if (currentDemoStep < demoData.steps.length - 1) {
-                    currentDemoStep++;
-                    renderStep();
-                    pause();
+                if (currentStep < steps.length - 1) {
+                    currentStep++;
+                    render();
+                } else {
+                    pause();  // ✅ Only pause when reaching the end
                 }
             }, 2000);
         }
