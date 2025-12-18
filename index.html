@@ -144,6 +144,13 @@
             animation: fadeInUp 1s ease-out 0.6s backwards;
         }
         
+        .authors-line sup,
+        .affiliation sup {
+            font-size: 0.7em;
+            font-weight: bold;
+            color: var(--secondary);
+        }
+        
         h1 .highlight {
             color: var(--secondary);
             position: relative;
@@ -623,13 +630,17 @@
                     Interactive Explanation Interfaces
                 </h1>
                 <div class="authors-line">
-                    <a href="https://scholar.google.com/citations?hl=en&user=MwzCTYYAAAAJ&view_op=list_works&sortby=pubdate" target="_blank">Runtao Zhou</a><span class="author-sep">•</span>
-                    <a href="https://scholar.google.com/citations?user=l_kfXecAAAAJ&hl=en" target="_blank">Giang Nguyen</a><span class="author-sep">•</span>
-                    <a href="https://www.linkedin.com/in/nikita-kharya-14a83670/" target="_blank">Nikita Kharya</a><span class="author-sep">•</span>
-                    <a href="https://scholar.google.com/citations?hl=en&user=EQw8d9AAAAAJ&view_op=list_works&sortby=pubdate" target="_blank">Anh Totti Nguyen</a><span class="author-sep">•</span>
-                    <a href="https://scholar.google.com/citations?user=AFEjd1QAAAAJ&hl=en" target="_blank">Chirag Agarwal</a>
+                    <a href="https://scholar.google.com/citations?hl=en&user=MwzCTYYAAAAJ&view_op=list_works&sortby=pubdate" target="_blank">Runtao Zhou<sup>1</sup></a><span class="author-sep">•</span>
+                    <a href="https://scholar.google.com/citations?user=l_kfXecAAAAJ&hl=en" target="_blank">Giang Nguyen<sup>2</sup></a><span class="author-sep">•</span>
+                    <a href="https://www.linkedin.com/in/nikita-kharya-14a83670/" target="_blank">Nikita Kharya<sup>3</sup></a><span class="author-sep">•</span>
+                    <a href="https://scholar.google.com/citations?hl=en&user=EQw8d9AAAAAJ&view_op=list_works&sortby=pubdate" target="_blank">Anh Totti Nguyen<sup>2</sup></a><span class="author-sep">•</span>
+                    <a href="https://scholar.google.com/citations?user=AFEjd1QAAAAJ&hl=en" target="_blank">Chirag Agarwal<sup>1</sup></a>
                 </div>
-                <div class="affiliation">University of Virginia • Auburn University</div>
+                <div class="affiliation">
+                    <sup>1</sup>University of Virginia &nbsp;&nbsp;
+                    <sup>2</sup>Auburn University &nbsp;&nbsp;
+                    <sup>3</sup>Independent Researcher
+                </div>
                 <p class="subtitle">
                     Transforming static chain-of-thought outputs into interactive interfaces that enhance verification accuracy and reduce cognitive load
                 </p>
