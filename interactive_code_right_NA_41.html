@@ -433,7 +433,10 @@
                 this.playPauseBtn.innerHTML = '❚❚ Pause';
                 
                 if (this.currentStep >= this.totalSteps) {
-                    this.currentStep = -1;
+                    // Already at the end, do nothing
+                    this.isPlaying = false;
+                    this.playPauseBtn.innerHTML = '▶ Play';
+                    return;
                 }
                 
                 this.playInterval = setInterval(() => {
