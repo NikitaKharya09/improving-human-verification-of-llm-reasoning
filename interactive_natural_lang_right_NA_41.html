@@ -396,8 +396,8 @@
             
             function playExplanation() {
                 if (currentStepIndex >= steps.length - 1) {
-                    // If at the end, start from beginning
-                    currentStepIndex = -1;
+                    // Already at the end, do nothing
+                    return;
                 }
                 
                 isPlaying = true;
