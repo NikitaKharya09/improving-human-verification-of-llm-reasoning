@@ -193,8 +193,8 @@
             background-color: rgba(70, 130, 180, 0.5);
         }
         /* layout tweak: 40 / 60 split */
-        .left-panel { width:40%!important }
-        .right-panel{ width:60%!important }
+        .left-panel { display: none !important; }
+        .right-panel{ width:100% !important; }
         /* hide “Variables” pane */
         .variables-container{display:none!important}
         .explanation-container{flex:1!important;height:auto!important}
@@ -373,6 +373,23 @@
                     
                     // Update current step index
                     currentStepIndex = index;
+                    
+                    // Auto-scroll to the active step
+                    if (explanationContainer) {
+                        setTimeout(() => {
+                            const activeStep = steps[index];
+                            if (activeStep) {
+                                const stepTop = activeStep.offsetTop;
+                                const containerHeight = explanationContainer.clientHeight;
+                                const stepHeight = activeStep.clientHeight;
+                                const scrollPosition = stepTop - (containerHeight / 2) + (stepHeight / 2);
+                                explanationContainer.scrollTo({
+                                    top: Math.max(0, scrollPosition),
+                                    behavior: 'smooth'
+                                });
+                            }
+                        }, 100);
+                    }
                 }
             }
             
