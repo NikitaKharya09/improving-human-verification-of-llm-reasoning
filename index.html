@@ -590,6 +590,50 @@
             .contribution-card {
                 cursor: default;
             }
+            
+            /* Demo section responsive styles */
+            .demo-container {
+                flex-direction: column !important;
+                height: auto !important;
+                min-height: 800px;
+            }
+            
+            .demo-left-panel {
+                width: 100% !important;
+                border-right: none !important;
+                border-bottom: 2px solid #ddd !important;
+                max-height: 300px;
+            }
+            
+            .demo-right-panel {
+                width: 100% !important;
+                min-height: 500px;
+            }
+            
+            .demo-tabs {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+            
+            .demo-tab {
+                flex: 1 1 calc(50% - 0.5rem);
+                min-width: 120px;
+                font-size: 0.85rem;
+                padding: 0.6rem 0.8rem;
+            }
+            
+            .demo-section {
+                padding: 1rem !important;
+                margin: 1.5rem 0 !important;
+            }
+            
+            .demo-section h3 {
+                font-size: 1.3rem !important;
+            }
+            
+            .demo-section p {
+                font-size: 0.9rem !important;
+            }
         }
         
         @media (max-width: 968px) {
@@ -602,6 +646,21 @@
             section div[style*="grid-template-columns: 1fr auto 1fr"] > div:nth-child(2) {
                 transform: rotate(90deg);
                 margin: 1rem 0;
+            }
+        }
+        
+        @media (min-width: 769px) and (max-width: 968px) {
+            /* Tablet adjustments for demo section */
+            .demo-left-panel {
+                width: 35% !important;
+            }
+            
+            .demo-right-panel {
+                width: 65% !important;
+            }
+            
+            .demo-container {
+                height: 500px !important;
             }
         }
         
@@ -717,7 +776,7 @@
             </div>
             
             <!-- Interactive Demo -->
-            <div style="margin: 3rem 0; background: var(--bg-card); padding: 2.5rem; border: 2px solid var(--secondary); border-radius: 8px;">
+            <div class="demo-section" style="margin: 3rem 0; background: var(--bg-card); padding: 2.5rem; border: 2px solid var(--secondary); border-radius: 8px;">
                 <h3 style="color: var(--highlight); margin-bottom: 1.5rem; text-align: center;">Try the Interactive Explanation Formats</h3>
                 <p style="text-align: center; color: var(--text-dim); margin-bottom: 2rem;">
                     Experience how our three interactive formats help you verify LLM reasoning
@@ -732,9 +791,9 @@
                 </div>
                 
                 <!-- Shared Dual Panel Layout -->
-                <div style="display: flex; height: 600px; background: white; border-radius: 8px 0 8px 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1), inset 0 2px 4px rgba(0,0,0,0.06); border: 2px solid #ddd; border-top: none;">
+                <div class="demo-container" style="display: flex; height: 600px; background: white; border-radius: 8px 0 8px 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1), inset 0 2px 4px rgba(0,0,0,0.06); border: 2px solid #ddd; border-top: none;">
                     <!-- Left Panel (Shared across all formats) -->
-                    <div style="width: 30%; background: white; padding: 20px; overflow-y: auto; border-right: 2px solid #ddd;">
+                    <div class="demo-left-panel" style="width: 30%; background: white; padding: 20px; overflow-y: auto; border-right: 2px solid #ddd;">
                         <div style="margin-bottom: 30px;">
                             <div style="font-size: 18px; font-weight: bold; color: #2c3e50; margin-bottom: 15px; border-bottom: 2px solid #3498db; padding-bottom: 5px;">Problem Statement</div>
                             <p style="font-size: 15px; line-height: 1.6; color: #34495e;">A bathroom has <span style="background-color: #ff634780; padding: 2px 6px; border-radius: 5px; color: black; font-weight: 600;">10 6-inch tiles</span> along its width and <span style="background-color: #87cefa80; padding: 2px 6px; border-radius: 5px; color: black; font-weight: 600;">20 6-inch tiles</span> along its length. What is the square footage of the bathroom?</p>
@@ -751,7 +810,7 @@
                     </div>
                     
                     <!-- Right Panel Container -->
-                    <div style="width: 70%; position: relative;">
+                    <div class="demo-right-panel" style="width: 70%; position: relative;">
                         <!-- iGraph Right Panel -->
                         <div id="demo-igraph" class="demo-content active" style="height: 100%; background: #F5F5F5;">
                             <iframe src="interactive_graph_right_NA_41.html" style="width: 100%; height: 100%; border: none;"></iframe>
