@@ -724,7 +724,7 @@
                     <a href="https://github.com/Runtaozhou/Interactive-CoT" class="btn btn-secondary" target="_blank">💻 GitHub Repo</a>
                     <a href="https://huggingface.co/spaces/Miles1999/interactive-llm-xai-TEST" class="btn btn-secondary" target="_blank">🤗 HF Interactive Demo</a>
                     <a href="https://www.youtube.com/watch?v=_AVPUMP4jiY&t=1s" class="btn btn-secondary" target="_blank">🎥 Summary Video</a>
-                    <a href="#" class="btn btn-secondary" onclick="showBibtex(event)" target="_blank">📋 BibTeX Citation</a>
+                    <a href="#" class="btn btn-secondary" onclick="showBibtex(event)">📋 BibTeX Citation</a>
                 </div>
                 
                 <!-- BibTeX Modal -->
@@ -1252,6 +1252,28 @@
             });
             
             // With iframe-based demos, no initialization is needed
+        }
+        
+        // BibTeX modal functions
+        function showBibtex(event) {
+            event.preventDefault();
+            document.getElementById('bibtexModal').style.display = 'flex';
+        }
+
+        function closeBibtex() {
+            document.getElementById('bibtexModal').style.display = 'none';
+            document.getElementById('copyFeedback').style.display = 'none';
+        }
+
+        function copyBibtex() {
+            const bibtexText = document.getElementById('bibtexContent').textContent;
+            navigator.clipboard.writeText(bibtexText).then(() => {
+                const feedback = document.getElementById('copyFeedback');
+                feedback.style.display = 'inline';
+                setTimeout(() => {
+                    feedback.style.display = 'none';
+                }, 2000);
+            });
         }
         
         // Close modal when clicking outside
