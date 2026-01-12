@@ -590,50 +590,6 @@
             .contribution-card {
                 cursor: default;
             }
-            
-            /* Demo section responsive styles */
-            .demo-container {
-                flex-direction: column !important;
-                height: auto !important;
-                min-height: 800px;
-            }
-            
-            .demo-left-panel {
-                width: 100% !important;
-                border-right: none !important;
-                border-bottom: 2px solid #ddd !important;
-                max-height: 300px;
-            }
-            
-            .demo-right-panel {
-                width: 100% !important;
-                min-height: 500px;
-            }
-            
-            .demo-tabs {
-                flex-wrap: wrap;
-                gap: 0.5rem;
-            }
-            
-            .demo-tab {
-                flex: 1 1 calc(50% - 0.5rem);
-                min-width: 120px;
-                font-size: 0.85rem;
-                padding: 0.6rem 0.8rem;
-            }
-            
-            .demo-section {
-                padding: 1rem !important;
-                margin: 1.5rem 0 !important;
-            }
-            
-            .demo-section h3 {
-                font-size: 1.3rem !important;
-            }
-            
-            .demo-section p {
-                font-size: 0.9rem !important;
-            }
         }
         
         @media (max-width: 968px) {
@@ -646,21 +602,6 @@
             section div[style*="grid-template-columns: 1fr auto 1fr"] > div:nth-child(2) {
                 transform: rotate(90deg);
                 margin: 1rem 0;
-            }
-        }
-        
-        @media (min-width: 769px) and (max-width: 968px) {
-            /* Tablet adjustments for demo section */
-            .demo-left-panel {
-                width: 35% !important;
-            }
-            
-            .demo-right-panel {
-                width: 65% !important;
-            }
-            
-            .demo-container {
-                height: 500px !important;
             }
         }
         
@@ -692,6 +633,29 @@
             font-size: 1.1rem;
             line-height: 1.8;
         }
+        
+        @keyframes acceptancePulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 6px 25px rgba(102, 126, 234, 0.7);
+            }
+        }
+        
+        .acceptance-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            animation: acceptancePulse 2s ease-in-out infinite;
+        }
     </style>
 </head>
 <body>
@@ -699,6 +663,9 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
+                <div class="acceptance-badge">
+                    🎊 ACCEPTED at IUI 2026
+                </div>
                 <h1>
                     Improving <span class="highlight">Human Verification</span><br>
                     of LLM Reasoning through<br>
@@ -707,7 +674,7 @@
                 <div class="authors-line">
                     <a href="https://scholar.google.com/citations?hl=en&user=MwzCTYYAAAAJ&view_op=list_works&sortby=pubdate" target="_blank">Runtao Zhou<sup>1</sup></a><span class="author-sep">•</span>
                     <a href="https://scholar.google.com/citations?user=l_kfXecAAAAJ&hl=en" target="_blank">Giang Nguyen<sup>2</sup></a><span class="author-sep">•</span>
-                    <a href="https://nikita-kharya.vercel.app/" target="_blank">Nikita Kharya<sup>3</sup></a><span class="author-sep">•</span>
+                    <a href="https://www.linkedin.com/in/nikita-kharya-14a83670/" target="_blank">Nikita Kharya<sup>3</sup></a><span class="author-sep">•</span>
                     <a href="https://scholar.google.com/citations?hl=en&user=EQw8d9AAAAAJ&view_op=list_works&sortby=pubdate" target="_blank">Anh Totti Nguyen<sup>2</sup></a><span class="author-sep">•</span>
                     <a href="https://scholar.google.com/citations?user=AFEjd1QAAAAJ&hl=en" target="_blank">Chirag Agarwal<sup>1</sup></a>
                 </div>
@@ -720,11 +687,11 @@
                     Transforming static chain-of-thought outputs into interactive interfaces that enhance verification accuracy and reduce cognitive load
                 </p>
                 <div class="cta-buttons">
-                    <a href="https://arxiv.org/abs/2510.22922" class="btn btn-secondary" target="_blank">📄 Read Paper</a>
+                    <a href="https://arxiv.org/abs/2510.22922" class="btn btn-primary" target="_blank">📄 Read Paper</a>
                     <a href="https://github.com/Runtaozhou/Interactive-CoT" class="btn btn-secondary" target="_blank">💻 GitHub Repo</a>
                     <a href="https://huggingface.co/spaces/Miles1999/interactive-llm-xai-TEST" class="btn btn-secondary" target="_blank">🤗 HF Interactive Demo</a>
                     <a href="https://www.youtube.com/watch?v=_AVPUMP4jiY&t=1s" class="btn btn-secondary" target="_blank">🎥 Summary Video</a>
-                    <a href="#" class="btn btn-secondary" onclick="showBibtex(event)">📋 BibTeX Citation</a>
+                    <a href="#" class="btn btn-secondary" onclick="showBibtex(event)" target="_blank">📋 BibTeX Citation</a>
                 </div>
                 
                 <!-- BibTeX Modal -->
@@ -732,11 +699,12 @@
                     <div style="background: var(--bg-card); padding: 2rem; border-radius: 8px; max-width: 700px; width: 90%; border: 2px solid var(--secondary); position: relative;">
                         <button onclick="closeBibtex()" style="position: absolute; top: 1rem; right: 1rem; background: var(--accent); color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; font-family: 'Space Mono', monospace;">✕ Close</button>
                         <h3 style="color: var(--highlight); margin-bottom: 1.5rem;">BibTeX Citation</h3>
-                        <pre id="bibtexContent" style="background: rgba(10, 14, 39, 0.8); padding: 1.5rem; border-radius: 6px; overflow-x: auto; color: var(--text); font-family: 'Courier New', monospace; font-size: 0.85rem; line-height: 1.6;">@article{zhou2024improving,
+                        <pre id="bibtexContent" style="background: rgba(10, 14, 39, 0.8); padding: 1.5rem; border-radius: 6px; overflow-x: auto; color: var(--text); font-family: 'Courier New', monospace; font-size: 0.85rem; line-height: 1.6;">@inproceedings{zhou2026improving,
   title={Improving Human Verification of LLM Reasoning through Interactive Explanation Interfaces},
   author={Zhou, Runtao and Nguyen, Giang and Kharya, Nikita and Nguyen, Anh Totti and Agarwal, Chirag},
-  journal={arXiv preprint arXiv:2510.22922},
-  year={2024}
+  booktitle={Proceedings of the 2026 ACM Conference on Intelligent User Interfaces},
+  year={2026},
+  note={To appear}
 }</pre>
                         <button onclick="copyBibtex()" style="background: var(--secondary); color: var(--primary); border: none; padding: 0.7rem 1.5rem; border-radius: 4px; cursor: pointer; font-family: 'Space Mono', monospace; font-weight: bold; margin-top: 1rem;">📋 Copy to Clipboard</button>
                         <span id="copyFeedback" style="color: var(--highlight); margin-left: 1rem; display: none;">✓ Copied!</span>
@@ -776,7 +744,7 @@
             </div>
             
             <!-- Interactive Demo -->
-            <div class="demo-section" style="margin: 3rem 0; background: var(--bg-card); padding: 2.5rem; border: 2px solid var(--secondary); border-radius: 8px;">
+            <div style="margin: 3rem 0; background: var(--bg-card); padding: 2.5rem; border: 2px solid var(--secondary); border-radius: 8px;">
                 <h3 style="color: var(--highlight); margin-bottom: 1.5rem; text-align: center;">Try the Interactive Explanation Formats</h3>
                 <p style="text-align: center; color: var(--text-dim); margin-bottom: 2rem;">
                     Experience how our three interactive formats help you verify LLM reasoning
@@ -791,9 +759,9 @@
                 </div>
                 
                 <!-- Shared Dual Panel Layout -->
-                <div class="demo-container" style="display: flex; height: 600px; background: white; border-radius: 8px 0 8px 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1), inset 0 2px 4px rgba(0,0,0,0.06); border: 2px solid #ddd; border-top: none;">
+                <div style="display: flex; height: 600px; background: white; border-radius: 8px 0 8px 8px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.1), inset 0 2px 4px rgba(0,0,0,0.06); border: 2px solid #ddd; border-top: none;">
                     <!-- Left Panel (Shared across all formats) -->
-                    <div class="demo-left-panel" style="width: 30%; background: white; padding: 20px; overflow-y: auto; border-right: 2px solid #ddd;">
+                    <div style="width: 30%; background: white; padding: 20px; overflow-y: auto; border-right: 2px solid #ddd;">
                         <div style="margin-bottom: 30px;">
                             <div style="font-size: 18px; font-weight: bold; color: #2c3e50; margin-bottom: 15px; border-bottom: 2px solid #3498db; padding-bottom: 5px;">Problem Statement</div>
                             <p style="font-size: 15px; line-height: 1.6; color: #34495e;">A bathroom has <span style="background-color: #ff634780; padding: 2px 6px; border-radius: 5px; color: black; font-weight: 600;">10 6-inch tiles</span> along its width and <span style="background-color: #87cefa80; padding: 2px 6px; border-radius: 5px; color: black; font-weight: 600;">20 6-inch tiles</span> along its length. What is the square footage of the bathroom?</p>
@@ -810,25 +778,107 @@
                     </div>
                     
                     <!-- Right Panel Container -->
-                    <div class="demo-right-panel" style="width: 70%; position: relative;">
+                    <div style="width: 70%; position: relative;">
                         <!-- iGraph Right Panel -->
-                        <div id="demo-igraph" class="demo-content active" style="height: 100%; background: #F5F5F5;">
-                            <iframe src="interactive_graph_right_NA_41.html" style="width: 100%; height: 100%; border: none;"></iframe>
+                        <div id="demo-igraph" class="demo-content active" style="height: 100%; background: #F5F5F5; flex-direction: column;">
+                            <!-- Controls -->
+                            <div style="background-color: #f8f9fa; padding: 10px; display: flex; gap: 10px; border-bottom: 1px solid #ddd; position: relative; z-index: 10;">
+                                <button id="demoPlayPause" style="padding: 8px 15px; border: none; border-radius: 4px; font-weight: 500; cursor: pointer; color: white; background-color: #2ecc71;">▶ Play</button>
+                                <button id="demoStop" style="padding: 8px 15px; border: none; border-radius: 4px; font-weight: 500; cursor: pointer; color: white; background-color: #e74c3c;">■ Stop</button>
+                                <button id="demoPrev" style="padding: 8px 15px; border: none; border-radius: 4px; font-weight: 500; cursor: pointer; color: white; background-color: #3498db;">⬅ Previous</button>
+                                <button id="demoNext" style="padding: 8px 15px; border: none; border-radius: 4px; font-weight: 500; cursor: pointer; color: white; background-color: #3498db;">Next ➡</button>
+                            </div>
+                            
+                            <!-- Graph Container -->
+                            <div style="flex: 1; position: relative; background: white; margin: 10px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column;">
+                                <div style="position: relative; height: 70%; background: white;">
+                                    <svg id="demoGraph" width="100%" height="100%" viewBox="0 0 800 400" style="display: block;">
+                                        <defs>
+                                            <marker id="demoArrow" markerWidth="4" markerHeight="3" refX="4" refY="1.5" orient="auto">
+                                                <polygon points="0 0, 4 1.5, 0 3" fill="black" />
+                                            </marker>
+                                        </defs>
+                                    </svg>
+                                    <div style="position: absolute; bottom: 10px; right: 10px; background: rgba(0, 0, 0, 0.8); color: white; padding: 10px 15px; border-radius: 6px; font-size: 14px; pointer-events: none; opacity: 0.9; line-height: 1.4;">💡 Drag nodes to rearrange<br>🔍 Hover for formulas</div>
+                                </div>
+                                <iframe id="demoStepIframe" style="width: 100%; height: 30%; border: none; border-top: 1px solid #ddd; background: white; display: block; overflow-y: auto;" srcdoc="<div style='padding: 20px; font-family: Arial, sans-serif;'>Click Play to start the visualization</div>"></iframe>
+                            </div>
                         </div>
                         
                         <!-- iPoT Right Panel -->
-                        <div id="demo-ipot" class="demo-content" style="height: 100%; background: #F5F5F5;">
-                            <iframe src="interactive_code_right_NA_41.html" style="width: 100%; height: 100%; border: none;"></iframe>
+                        <div id="demo-ipot" class="demo-content" style="height: 100%; background: #F5F5F5; flex-direction: column; padding: 20px; overflow-y: auto;">
+                            <!-- Controls -->
+                            <div style="background-color: #f8f9fa; padding: 10px; display: flex; gap: 10px; border-bottom: 1px solid #ddd; margin-bottom: 20px; border-radius: 4px; position: relative; z-index: 10;">
+                                <button id="potPlayPause" style="padding: 8px 15px; border: none; border-radius: 4px; font-weight: 500; cursor: pointer; color: white; background-color: #2ecc71;">▶ Play</button>
+                                <button id="potStop" style="padding: 8px 15px; border: none; border-radius: 4px; font-weight: 500; cursor: pointer; color: white; background-color: #e74c3c;">■ Stop</button>
+                                <button id="potPrev" style="padding: 8px 15px; border: none; border-radius: 4px; font-weight: 500; cursor: pointer; color: white; background-color: #3498db;">⬅ Previous</button>
+                                <button id="potNext" style="padding: 8px 15px; border: none; border-radius: 4px; font-weight: 500; cursor: pointer; color: white; background-color: #3498db;">Next ➡</button>
+                            </div>
+                            
+                            <!-- iPoT Code visualization -->
+                            <div style="background: white; padding: 2rem; border-radius: 8px; font-family: 'Courier New', monospace; font-size: 0.9rem; flex: 1; overflow-y: auto; border: 2px solid #e5e7eb;">
+                                <div id="potCode" style="color: #1e293b; line-height: 1.8;">
+                                    <div style="color: #64748b; margin-bottom: 1rem; font-weight: bold;"># Python Solution</div>
+                                </div>
+                                <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(78, 205, 196, 0.1); border-radius: 6px; border-left: 3px solid #4ECDC4;">
+                                    <div style="font-size: 0.85rem; color: #334155; margin-bottom: 0.5rem; font-weight: bold;">Variables:</div>
+                                    <div id="potVariables" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.5rem;">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Step description -->
+                            <div id="potStepDesc" style="margin-top: 1rem; padding: 1.2rem; background: #FFF3CD; border-left: 4px solid #FFC107; border-radius: 4px;">
+                                <div style="margin-bottom: 0.5rem; color: #1e293b;"><span id="potProgress">Step <strong style="color: #4ECDC4;">1</strong> of <strong>5</strong></span></div>
+                                <strong style="color: #1e293b;">Step 1:</strong> <span style="color: #1e293b;">Starting code execution...</span>
+                            </div>
                         </div>
                         
                         <!-- iCoT Right Panel -->
-                        <div id="demo-icot" class="demo-content" style="height: 100%; background: #F5F5F5;">
-                            <iframe src="interactive_natural_lang_right_NA_41.html" style="width: 100%; height: 100%; border: none;"></iframe>
+                        <div id="demo-icot" class="demo-content" style="height: 100%; background: #F5F5F5; flex-direction: column; padding: 20px; overflow-y: auto;">
+                            <!-- Controls -->
+                            <div style="background-color: #f8f9fa; padding: 10px; display: flex; gap: 10px; border-bottom: 1px solid #ddd; margin-bottom: 20px; border-radius: 4px;">
+                                <button id="cotPlayPause" style="padding: 8px 15px; border: none; border-radius: 4px; font-weight: 500; cursor: pointer; color: white; background-color: #2ecc71;">▶ Play</button>
+                                <button id="cotStop" style="padding: 8px 15px; border: none; border-radius: 4px; font-weight: 500; cursor: pointer; color: white; background-color: #e74c3c;">■ Stop</button>
+                                <button id="cotPrev" style="padding: 8px 15px; border: none; border-radius: 4px; font-weight: 500; cursor: pointer; color: white; background-color: #3498db;">⬅ Previous</button>
+                                <button id="cotNext" style="padding: 8px 15px; border: none; border-radius: 4px; font-weight: 500; cursor: pointer; color: white; background-color: #3498db;">Next ➡</button>
+                            </div>
+                            
+                            <!-- iCoT Text visualization -->
+                            <div style="background: white; padding: 1.5rem; border-radius: 8px; flex: 1; overflow-y: auto; border: 2px solid #e5e7eb;">
+                                <div id="cotSteps" style="color: #1e293b;">
+                                </div>
+                            </div>
+                            
+                            <!-- Step description -->
+                            <div id="cotStepDesc" style="margin-top: 1rem; padding: 1.2rem; background: #FFF3CD; border-left: 4px solid #FFC107; border-radius: 4px;">
+                                <div style="margin-bottom: 0.5rem; color: #1e293b;"><span id="cotProgress">Step <strong style="color: #4ECDC4;">1</strong> of <strong>5</strong></span></div>
+                                <strong style="color: #1e293b;">Step 1:</strong> <span style="color: #1e293b;">Starting explanation...</span>
+                            </div>
                         </div>
                         
                         <!-- Text (CoT) Right Panel -->
-                        <div id="demo-text" class="demo-content" style="height: 100%; background: white;">
-                            <iframe src="traditional_cot_right_NA_41.html" style="width: 100%; height: 100%; border: none;"></iframe>
+                        <div id="demo-text" class="demo-content" style="height: 100%; background: white; padding: 20px; overflow-y: auto;">
+                            <div style="padding: 1.5rem;">
+                                <div style="color: #1e293b; line-height: 1.6;">
+                                    <p style="margin-bottom: 1.2rem; font-size: 0.9rem;"><strong style="color: #4ECDC4;">Step 1:</strong> Calculate the total width of the bathroom in inches. We know there are 10 tiles along the width, and each tile is 6 inches. Width in inches = Number of tiles × Tile length = 10 × 6 = 60 inches</p>
+                                    
+                                    <p style="margin-bottom: 1.2rem; font-size: 0.9rem;"><strong style="color: #4ECDC4;">Step 2:</strong> Convert the width from inches to feet. To convert inches to feet, we divide by 12 (since 1 foot = 12 inches). Width in feet = 60 inches ÷ 12 = 5 feet</p>
+                                    
+                                    <p style="margin-bottom: 1.2rem; font-size: 0.9rem;"><strong style="color: #4ECDC4;">Step 3:</strong> Calculate the total length of the bathroom in inches. We know there are 20 tiles along the length, and each tile is 6 inches. Length in inches = Number of tiles × Tile length = 20 × 6 = 120 inches</p>
+                                    
+                                    <p style="margin-bottom: 1.2rem; font-size: 0.9rem;"><strong style="color: #4ECDC4;">Step 4:</strong> Convert the length from inches to feet. To convert inches to feet, we divide by 12. Length in feet = 120 inches ÷ 12 = 10 feet</p>
+                                    
+                                    <p style="margin-bottom: 1.2rem; font-size: 0.9rem;"><strong style="color: #4ECDC4;">Step 5:</strong> Calculate the square footage of the bathroom. The area is calculated by multiplying the length by the width. Area = Length × Width = 10 feet × 5 feet = 50 square feet</p>
+                                    
+                                    <p style="margin-top: 1.5rem; font-size: 0.9rem;"><strong>Final Answer:</strong> The bathroom is 50 square feet.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Note about traditional format -->
+                            <div style="margin: 1.5rem; padding: 1.2rem; background: #fff3cd; border-left: 4px solid #ffc107; border-radius: 4px;">
+                                <strong style="color: #1e293b; font-size: 0.95rem;">Traditional CoT Format:</strong> <span style="color: #1e293b; font-size: 0.9rem;">This is the standard text-based output without interactivity. All steps are shown at once, which can lead to higher cognitive load and slower verification compared to the interactive formats above.</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1251,9 +1301,784 @@
                 }
             });
             
-            // With iframe-based demos, no initialization is needed
+            // Initialize the selected demo with a small delay to ensure DOM is visible
+            setTimeout(() => {
+                if (format === 'igraph') {
+                    // Reset and reinitialize iGraph
+                    currentDemoStep = 0;
+                    isPlaying = false;
+                    initDemo();
+                } else if (format === 'ipot') {
+                    potCurrentStep = 0;
+                    potPlaying = false;
+                    initIPoTDemo();
+                } else if (format === 'icot') {
+                    cotCurrentStep = 0;
+                    cotPlaying = false;
+                    initICoTDemo();
+                }
+            }, 300);
+            // Text format has no initialization (static display)
         }
         
+        // iGraph Demo Data
+        const demoData = {
+            nodes: {
+                width60: { id: 'w60', x: 150, y: 100, label: 'Width', value: '60 in', calc: '10 × 6', color: '#ff634780', border: '#FF6B35' },
+                width5: { id: 'w5', x: 400, y: 100, label: 'Width', value: '5 ft', calc: '60 ÷ 12', color: '#ff634780', border: '#FF6B35' },
+                length120: { id: 'l120', x: 150, y: 250, label: 'Length', value: '120 in', calc: '20 × 6', color: '#87cefa80', border: '#87CEEB' },
+                length10: { id: 'l10', x: 400, y: 250, label: 'Length', value: '10 ft', calc: '120 ÷ 12', color: '#87cefa80', border: '#87CEEB' },
+                area: { id: 'area', x: 650, y: 175, label: '✓ Area', value: '50 sq ft', calc: '5 × 10', color: '#90ee9080', border: '#2ECC71' }
+            },
+            steps: [
+                {
+                    title: 'Step 1: Calculate width in inches',
+                    desc: 'Width = <span style="background: #ff634780; padding: 2px 4px; border-radius: 3px; font-weight: 600;">10 tiles × 6 inches = 60 inches</span>',
+                    nodes: ['width60'],
+                    edges: []
+                },
+                {
+                    title: 'Step 2: Convert width to feet',
+                    desc: 'Width = <span style="background: #ff634780; padding: 2px 4px; border-radius: 3px; font-weight: 600;">60 inches ÷ 12 = 5 feet</span>',
+                    nodes: ['width60', 'width5'],
+                    edges: [{ from: 'w60', to: 'w5', label: '÷12' }]
+                },
+                {
+                    title: 'Step 3: Calculate length in inches',
+                    desc: 'Length = <span style="background: #87cefa80; padding: 2px 4px; border-radius: 3px; font-weight: 600;">20 tiles × 6 inches = 120 inches</span>',
+                    nodes: ['width60', 'width5', 'length120'],
+                    edges: [{ from: 'w60', to: 'w5', label: '÷12' }]
+                },
+                {
+                    title: 'Step 4: Convert length to feet',
+                    desc: 'Length = <span style="background: #87cefa80; padding: 2px 4px; border-radius: 3px; font-weight: 600;">120 inches ÷ 12 = 10 feet</span>',
+                    nodes: ['width60', 'width5', 'length120', 'length10'],
+                    edges: [
+                        { from: 'w60', to: 'w5', label: '÷12' },
+                        { from: 'l120', to: 'l10', label: '÷12' }
+                    ]
+                },
+                {
+                    title: 'Step 5: Calculate total area',
+                    desc: 'Area = <span style="background: #ff634780; padding: 2px 4px; border-radius: 3px; font-weight: 600;">5 feet</span> × <span style="background: #87cefa80; padding: 2px 4px; border-radius: 3px; font-weight: 600;">10 feet</span> = <span style="background: #90ee9080; padding: 2px 4px; border-radius: 3px; font-weight: 600;">50 square feet</span>',
+                    nodes: ['width60', 'width5', 'length120', 'length10', 'area'],
+                    edges: [
+                        { from: 'w60', to: 'w5', label: '÷12' },
+                        { from: 'l120', to: 'l10', label: '÷12' },
+                        { from: 'w5', to: 'area', label: '×' },
+                        { from: 'l10', to: 'area', label: '×' }
+                    ]
+                }
+            ]
+        };
+
+        let currentDemoStep = 0;
+        let isPlaying = false;
+        let playInterval = null;
+        let nodePositions = {};
+
+        let svg, playPauseBtn, stopBtn, prevBtn, nextBtn;
+
+        function initDemo() {
+            
+            // Get element references after DOM loads
+            svg = document.getElementById('demoGraph');
+            playPauseBtn = document.getElementById('demoPlayPause');
+            stopBtn = document.getElementById('demoStop');
+            prevBtn = document.getElementById('demoPrev');
+            nextBtn = document.getElementById('demoNext');
+            
+            
+            if (!svg) {
+                // Retry after a short delay
+                setTimeout(initDemo, 200);
+                return;
+            }
+            
+            
+            // Initialize node positions
+            Object.values(demoData.nodes).forEach(node => {
+                if (!nodePositions[node.id]) {
+                    nodePositions[node.id] = { x: node.x, y: node.y };
+                }
+            });
+            
+            // Set up event listeners with safety checks
+            if (playPauseBtn) {
+                playPauseBtn.onclick = () => {
+                    isPlaying ? pause() : play();
+                };
+            }
+            
+            if (stopBtn) {
+                stopBtn.onclick = stop;
+            }
+            
+            if (prevBtn) {
+                prevBtn.onclick = () => { 
+                    if (currentDemoStep > 0) { 
+                        currentDemoStep--; 
+                        renderStep(); 
+                    }
+                };
+            }
+            
+            if (nextBtn) {
+                nextBtn.onclick = () => {
+                    if (currentDemoStep < demoData.steps.length - 1) { 
+                        currentDemoStep++; 
+                        renderStep(); 
+                    }
+                };
+            }
+            
+            renderStep();
+        }
+
+        function renderStep() {
+            const step = demoData.steps[currentDemoStep];
+            
+            if (!svg) {
+                return;
+            }
+            
+            
+            // Clear SVG (keep defs)
+            while (svg.children.length > 1) svg.removeChild(svg.lastChild);
+            
+            // Draw edges
+            step.edges.forEach(edge => drawEdge(edge, step.nodes));
+            
+            // Draw nodes - lookup by object key
+            step.nodes.forEach(nodeKey => {
+                const node = demoData.nodes[nodeKey];
+                if (node) drawNode(node);
+            });
+            
+            // Update iframe with step information
+            const iframe = document.getElementById('demoStepIframe');
+            if (iframe) {
+                let content = `
+                    <div style="padding: 20px; font-family: Arial, sans-serif; min-height: 100%;">
+                        <div style="background: #FFF3CD; border-left: 3px solid #FFC107; padding: 15px; border-radius: 5px;">
+                            <strong>Step ${currentDemoStep + 1}:</strong> ${step.title}
+                            <br><br>
+                            <span style="color: #666;">${step.desc}</span>
+                        </div>
+                `;
+                
+                if (currentDemoStep === demoData.steps.length - 1) {
+                    content += `
+                        <div style="background: #d4edda; border: 1px solid #c3e6cb; color: #155724; padding: 15px; border-radius: 5px; margin-top: 10px;">
+                            <strong>Final Answer:</strong> The bathroom is 50 square feet.
+                        </div>
+                    `;
+                }
+                
+                content += `</div>`;
+                
+                iframe.srcdoc = content;
+            }
+            
+            updateButtons();
+        }
+
+        function drawNode(node) {
+            if (!svg) {
+                return;
+            }
+            
+            const pos = nodePositions[node.id];
+            const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+            g.setAttribute('data-node-id', node.id);
+            g.style.cursor = 'grab';
+            
+            // Background rect
+            const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+            rect.setAttribute('x', pos.x - 55);
+            rect.setAttribute('y', pos.y - 30);
+            rect.setAttribute('width', 110);
+            rect.setAttribute('height', 60);
+            rect.setAttribute('rx', 8);
+            rect.setAttribute('fill', node.color);
+            rect.setAttribute('stroke', node.border);
+            rect.setAttribute('stroke-width', 2);
+            g.appendChild(rect);
+            
+            // Label
+            const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            label.setAttribute('x', pos.x);
+            label.setAttribute('y', pos.y - 10);
+            label.setAttribute('text-anchor', 'middle');
+            label.setAttribute('font-size', '11');
+            label.setAttribute('fill', '#1e293b');
+            label.setAttribute('font-weight', 'bold');
+            label.textContent = node.label;
+            g.appendChild(label);
+            
+            // Value
+            const value = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            value.setAttribute('x', pos.x);
+            value.setAttribute('y', pos.y + 8);
+            value.setAttribute('text-anchor', 'middle');
+            value.setAttribute('font-size', '13');
+            value.setAttribute('fill', '#1e293b');
+            value.setAttribute('font-weight', 'bold');
+            value.textContent = node.value;
+            g.appendChild(value);
+            
+            // Formula (hidden by default)
+            const formula = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            formula.setAttribute('x', pos.x);
+            formula.setAttribute('y', pos.y + 22);
+            formula.setAttribute('text-anchor', 'middle');
+            formula.setAttribute('font-size', '10');
+            formula.setAttribute('fill', '#4b5563');
+            formula.textContent = `(${node.calc})`;
+            formula.style.display = 'none';
+            g.appendChild(formula);
+            
+            // Mouse events
+            g.addEventListener('mousedown', (e) => startDrag(e, node));
+            g.addEventListener('mouseenter', () => {
+                formula.style.display = 'block';
+                rect.setAttribute('stroke-width', 3);
+            });
+            g.addEventListener('mouseleave', () => {
+                formula.style.display = 'none';
+                rect.setAttribute('stroke-width', 2);
+            });
+            
+            svg.appendChild(g);
+        }
+
+        function drawEdge(edge, visibleNodes) {
+            if (!svg) {
+                return;
+            }
+            
+            const fromNode = Object.values(demoData.nodes).find(n => n.id === edge.from);
+            const toNode = Object.values(demoData.nodes).find(n => n.id === edge.to);
+            if (!fromNode || !toNode) return;
+            
+            const from = nodePositions[edge.from];
+            const to = nodePositions[edge.to];
+            
+            // Calculate connection points
+            let sx = from.x + 55, sy = from.y, ex = to.x - 55, ey = to.y;
+            
+            // Create path
+            const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            const mx = (sx + ex) / 2, my = (sy + ey) / 2;
+            path.setAttribute('d', `M ${sx} ${sy} Q ${mx} ${my} ${ex} ${ey}`);
+            path.setAttribute('stroke', '#9BA3AF');
+            path.setAttribute('stroke-width', 2);
+            path.setAttribute('fill', 'none');
+            path.setAttribute('marker-end', 'url(#demoArrow)');
+            svg.appendChild(path);
+            
+            // Label
+            const labelBg = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+            labelBg.setAttribute('x', mx - 18);
+            labelBg.setAttribute('y', my - 10);
+            labelBg.setAttribute('width', 36);
+            labelBg.setAttribute('height', 20);
+            labelBg.setAttribute('rx', 10);
+            labelBg.setAttribute('fill', '#151932');
+            svg.appendChild(labelBg);
+            
+            const labelText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            labelText.setAttribute('x', mx);
+            labelText.setAttribute('y', my + 4);
+            labelText.setAttribute('text-anchor', 'middle');
+            labelText.setAttribute('font-size', '11');
+            labelText.setAttribute('fill', '#4ECDC4');
+            labelText.setAttribute('font-weight', 'bold');
+            labelText.textContent = edge.label;
+            svg.appendChild(labelText);
+        }
+
+        function startDrag(e, node) {
+            if (!svg) return;
+            
+            const startX = e.clientX, startY = e.clientY;
+            const startPos = { ...nodePositions[node.id] };
+            
+            function onMove(e) {
+                if (!svg) return;
+                const rect = svg.getBoundingClientRect();
+                const dx = (e.clientX - startX) * (900 / rect.width);
+                const dy = (e.clientY - startY) * (400 / rect.height);
+                nodePositions[node.id] = {
+                    x: Math.max(60, Math.min(840, startPos.x + dx)),
+                    y: Math.max(35, Math.min(365, startPos.y + dy))
+                };
+                renderStep();
+            }
+            
+            function onUp() {
+                document.removeEventListener('mousemove', onMove);
+                document.removeEventListener('mouseup', onUp);
+            }
+            
+            document.addEventListener('mousemove', onMove);
+            document.addEventListener('mouseup', onUp);
+        }
+
+        function play() {
+            if (currentDemoStep >= demoData.steps.length - 1) {
+                return; // Already at the end
+            }
+            
+            isPlaying = true;
+            playPauseBtn.textContent = '⏸ Pause';
+            
+            // Advance immediately
+            currentDemoStep++;
+            renderStep();
+            
+            // Then continue with interval
+            playInterval = setInterval(() => {
+                if (currentDemoStep < demoData.steps.length - 1) {
+                    currentDemoStep++;
+                    renderStep();
+                } else {
+                    pause();
+                }
+            }, 2000);
+        }
+
+        function pause() {
+            isPlaying = false;
+            playPauseBtn.textContent = '▶ Play';
+            if (playInterval) {
+                clearInterval(playInterval);
+                playInterval = null;
+            }
+        }
+
+        function stop() {
+            pause();
+            currentDemoStep = 0;
+            renderStep();
+        }
+
+        function updateButtons() {
+            if (prevBtn) {
+                prevBtn.disabled = currentDemoStep === 0;
+                prevBtn.style.opacity = prevBtn.disabled ? '0.4' : '1';
+            }
+            if (nextBtn) {
+                nextBtn.disabled = currentDemoStep === demoData.steps.length - 1;
+                nextBtn.style.opacity = nextBtn.disabled ? '0.4' : '1';
+            }
+        }
+        
+        // Initialize iGraph Demo - wait for DOM to be ready
+        function initIGraphDemo() {
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initDemo);
+            } else {
+                initDemo();
+            }
+        }
+        
+        // iPoT Demo Implementation
+        let potCurrentStep = 0;
+        let potPlaying = false;
+        let potInterval = null;
+        
+        const potSteps = [
+            {
+                code: '# Calculate the width of bathroom in inches',
+                variables: { width_tiles: 10, tile_size: 6 },
+                desc: 'Define the basic variables from the problem'
+            },
+            {
+                code: 'width_inches = width_tiles * tile_size  # 10 * 6 = 60',
+                variables: { width_tiles: 10, tile_size: 6, width_inches: 60 },
+                desc: 'Calculate total width in inches'
+            },
+            {
+                code: 'width_feet = width_inches / 12  # 60 / 12 = 5',
+                variables: { width_tiles: 10, tile_size: 6, width_inches: 60, width_feet: 5 },
+                desc: 'Convert width from inches to feet'
+            },
+            {
+                code: 'length_tiles = 20\nlength_inches = length_tiles * tile_size  # 20 * 6 = 120\nlength_feet = length_inches / 12  # 120 / 12 = 10',
+                variables: { width_tiles: 10, tile_size: 6, width_inches: 60, width_feet: 5, length_tiles: 20, length_inches: 120, length_feet: 10 },
+                desc: 'Calculate length in feet following the same process'
+            },
+            {
+                code: 'bathroom_area = width_feet * length_feet  # 5 * 10 = 50',
+                variables: { width_tiles: 10, tile_size: 6, width_inches: 60, width_feet: 5, length_tiles: 20, length_inches: 120, length_feet: 10, bathroom_area: 50 },
+                desc: 'Calculate the final area in square feet'
+            }
+        ];
+        
+        function initIPoTDemo() {
+            potCurrentStep = 0;
+            
+            const playPauseBtn = document.getElementById('potPlayPause');
+            const stopBtn = document.getElementById('potStop');
+            const prevBtn = document.getElementById('potPrev');
+            const nextBtn = document.getElementById('potNext');
+            
+            
+            updatePoTDisplay();
+            
+            if (playPauseBtn) {
+                playPauseBtn.onclick = () => {
+                    if (potPlaying) {
+                        pausePoT();
+                    } else {
+                        playPoT();
+                    }
+                };
+            }
+            
+            if (stopBtn) {
+                stopBtn.onclick = () => {
+                    pausePoT();
+                    potCurrentStep = 0;
+                    updatePoTDisplay();
+                };
+            }
+            
+            if (prevBtn) {
+                prevBtn.onclick = () => {
+                    if (potCurrentStep > 0) {
+                        potCurrentStep--;
+                        updatePoTDisplay();
+                    }
+                };
+            }
+            
+            if (nextBtn) {
+                nextBtn.onclick = () => {
+                    if (potCurrentStep < potSteps.length - 1) {
+                        potCurrentStep++;
+                        updatePoTDisplay();
+                    }
+                };
+            }
+            
+        }
+        
+        function updatePoTDisplay() {
+            const step = potSteps[potCurrentStep];
+            let codeHTML = '';
+            
+            for (let i = 0; i <= potCurrentStep; i++) {
+                const s = potSteps[i];
+                const opacity = i === potCurrentStep ? '1' : '0.5';
+                const highlight = i === potCurrentStep ? 'background: rgba(78, 205, 196, 0.2); border-left: 3px solid #4ECDC4; padding-left: 1rem;' : '';
+                codeHTML += `<div style="margin-bottom: 0.5rem; opacity: ${opacity}; ${highlight} transition: all 0.3s; color: #1e293b;">${s.code}</div>`;
+            }
+            
+            const potCodeEl = document.getElementById('potCode');
+            if (potCodeEl) {
+                potCodeEl.innerHTML = '<div style="color: #64748b; margin-bottom: 1rem; font-weight: bold;"># Python Solution</div>' + codeHTML;
+            }
+            
+            // Update variables
+            let varsHTML = '';
+            for (const [key, value] of Object.entries(step.variables)) {
+                // Determine background color based on variable name
+                let bgColor = '#f1f5f9'; // default gray
+                if (key.includes('width')) {
+                    bgColor = '#ff634740'; // red for width
+                } else if (key.includes('length')) {
+                    bgColor = '#87cefa40'; // blue for length
+                } else if (key === 'bathroom_area') {
+                    bgColor = '#90ee9040'; // green for area
+                }
+                varsHTML += `<div style="padding: 0.5rem; background: ${bgColor}; border-radius: 4px; border: 1px solid #e2e8f0;"><span style="color: #4ECDC4; font-weight: bold;">${key}</span> = <span style="color: #FF6B35; font-weight: bold;">${value}</span></div>`;
+            }
+            
+            // Add final answer to variables section on last step
+            if (potCurrentStep === potSteps.length - 1) {
+                varsHTML += `
+                    <div style="grid-column: 1 / -1; margin-top: 1rem; padding: 1rem; background: #d4edda; border: 1px solid #c3e6cb; border-radius: 6px;">
+                        <strong style="color: #155724; font-size: 1.05rem;">✓ Final Answer: 50 square feet</strong>
+                    </div>
+                `;
+            }
+            
+            const potVariablesEl = document.getElementById('potVariables');
+            if (potVariablesEl) {
+                potVariablesEl.innerHTML = varsHTML;
+            }
+            
+            // Update progress and description safely
+            const potProgressEl = document.getElementById('potProgress');
+            if (potProgressEl) {
+                potProgressEl.innerHTML = `Step <strong style="color: #4ECDC4;">${potCurrentStep + 1}</strong> of <strong style="color: #1e293b;">${potSteps.length}</strong>`;
+            }
+            
+            const potStepDescEl = document.getElementById('potStepDesc');
+            if (potStepDescEl) {
+                potStepDescEl.innerHTML = `
+                    <div style="margin-bottom: 0.5rem; color: #1e293b;"><span id="potProgress">Step <strong style="color: #4ECDC4;">${potCurrentStep + 1}</strong> of <strong>${potSteps.length}</strong></span></div>
+                    <strong style="color: #1e293b;">Step ${potCurrentStep + 1}:</strong> <span style="color: #1e293b;">${step.desc}</span>
+                `;
+            }
+            
+            // Update buttons
+            const potPrevBtn = document.getElementById('potPrev');
+            const potNextBtn = document.getElementById('potNext');
+            if (potPrevBtn && potNextBtn) {
+                potPrevBtn.disabled = potCurrentStep === 0;
+                potNextBtn.disabled = potCurrentStep === potSteps.length - 1;
+                potPrevBtn.style.opacity = potPrevBtn.disabled ? '0.4' : '1';
+                potNextBtn.style.opacity = potNextBtn.disabled ? '0.4' : '1';
+            }
+        }
+        
+        function playPoT() {
+            if (potCurrentStep >= potSteps.length - 1) {
+                return; // Already at the end
+            }
+            
+            potPlaying = true;
+            document.getElementById('potPlayPause').textContent = '⏸ Pause';
+            
+            // Advance immediately
+            potCurrentStep++;
+            updatePoTDisplay();
+            
+            // Then continue with interval
+            potInterval = setInterval(() => {
+                if (potCurrentStep < potSteps.length - 1) {
+                    potCurrentStep++;
+                    updatePoTDisplay();
+                } else {
+                    pausePoT();
+                }
+            }, 2000);
+        }
+        
+        function pausePoT() {
+            potPlaying = false;
+            document.getElementById('potPlayPause').textContent = '▶ Play';
+            if (potInterval) {
+                clearInterval(potInterval);
+                potInterval = null;
+            }
+        }
+        
+        // iCoT Demo Implementation
+        let cotCurrentStep = 0;
+        let cotPlaying = false;
+        let cotInterval = null;
+        
+        const cotSteps = [
+            {
+                title: 'Calculate the width of the bathroom in inches',
+                content: 'We know there are <span style="background: #ff634780; padding: 0.2rem 0.4rem; border-radius: 3px; font-weight: 600;">10 tiles</span> along the width, and each tile is <span style="background: #ff634780; padding: 0.2rem 0.4rem; border-radius: 3px; font-weight: 600;">6 inches</span>.',
+                formula: 'Width in inches = Number of tiles × Tile length = <span style="background: #ff634780; padding: 0.2rem 0.4rem; border-radius: 3px; font-weight: 600;">10 × 6 = 60 inches</span>'
+            },
+            {
+                title: 'Convert the width from inches to feet',
+                content: 'To convert inches to feet, we divide by 12 (since 1 foot = 12 inches).',
+                formula: 'Width in feet = <span style="background: #ff634780; padding: 0.2rem 0.4rem; border-radius: 3px; font-weight: 600;">60 inches ÷ 12 = 5 feet</span>'
+            },
+            {
+                title: 'Calculate the length of the bathroom in inches',
+                content: 'We know there are <span style="background: #87cefa80; padding: 0.2rem 0.4rem; border-radius: 3px; font-weight: 600;">20 tiles</span> along the length, and each tile is <span style="background: #87cefa80; padding: 0.2rem 0.4rem; border-radius: 3px; font-weight: 600;">6 inches</span>.',
+                formula: 'Length in inches = Number of tiles × Tile length = <span style="background: #87cefa80; padding: 0.2rem 0.4rem; border-radius: 3px; font-weight: 600;">20 × 6 = 120 inches</span>'
+            },
+            {
+                title: 'Convert the length from inches to feet',
+                content: 'To convert inches to feet, we divide by 12.',
+                formula: 'Length in feet = <span style="background: #87cefa80; padding: 0.2rem 0.4rem; border-radius: 3px; font-weight: 600;">120 inches ÷ 12 = 10 feet</span>'
+            },
+            {
+                title: 'Calculate the square footage of the bathroom',
+                content: 'The area is calculated by multiplying the length by the width.',
+                formula: 'Area = Length × Width = <span style="background: #87cefa80; padding: 0.2rem 0.4rem; border-radius: 3px; font-weight: 600;">10 feet</span> × <span style="background: #ff634780; padding: 0.2rem 0.4rem; border-radius: 3px; font-weight: 600;">5 feet</span> = <span style="background: #90ee9080; padding: 0.2rem 0.4rem; border-radius: 3px; font-weight: 600;">50 square feet</span>'
+            }
+        ];
+        
+        function initICoTDemo() {
+            cotCurrentStep = 0;
+            updateCoTDisplay();
+            
+            const playPauseBtn = document.getElementById('cotPlayPause');
+            const stopBtn = document.getElementById('cotStop');
+            const prevBtn = document.getElementById('cotPrev');
+            const nextBtn = document.getElementById('cotNext');
+            
+            if (playPauseBtn) {
+                playPauseBtn.onclick = () => {
+                    if (cotPlaying) {
+                        pauseCoT();
+                    } else {
+                        playCoT();
+                    }
+                };
+            }
+            
+            if (stopBtn) {
+                stopBtn.onclick = () => {
+                    pauseCoT();
+                    cotCurrentStep = 0;
+                    updateCoTDisplay();
+                };
+            }
+            
+            if (prevBtn) {
+                prevBtn.onclick = () => {
+                    if (cotCurrentStep > 0) {
+                        cotCurrentStep--;
+                        updateCoTDisplay();
+                    }
+                };
+            }
+            
+            if (nextBtn) {
+                nextBtn.onclick = () => {
+                    if (cotCurrentStep < cotSteps.length - 1) {
+                        cotCurrentStep++;
+                        updateCoTDisplay();
+                    }
+                };
+            }
+        }
+        
+        function updateCoTDisplay() {
+            let stepsHTML = '';
+            
+            for (let i = 0; i <= cotCurrentStep; i++) {
+                const step = cotSteps[i];
+                const isActive = i === cotCurrentStep;
+                const bgColor = isActive ? 'rgba(78, 205, 196, 0.15)' : 'rgba(248, 249, 250, 0.5)';
+                const borderColor = isActive ? '#4ECDC4' : '#e5e7eb';
+                
+                stepsHTML += `
+                    <div style="margin-bottom: 1.2rem; padding: 1.2rem; background: ${bgColor}; border-left: 4px solid ${borderColor}; border-radius: 6px; transition: all 0.3s;">
+                        <div style="font-weight: bold; color: #4ECDC4; margin-bottom: 0.6rem; font-size: 0.95rem;">Step ${i + 1}: ${step.title}</div>
+                        <p style="margin-bottom: 0.6rem; line-height: 1.5; color: #334155; font-size: 0.9rem;">${step.content}</p>
+                        <div style="background: white; padding: 0.8rem; border-radius: 4px; border: 1px solid #e5e7eb; font-family: 'Courier New', monospace; color: #1e293b; font-size: 0.85rem;">
+                            ${step.formula}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            // Add final answer block on last step
+            if (cotCurrentStep === cotSteps.length - 1) {
+                stepsHTML += `
+                    <div style="margin-top: 1.5rem; padding: 1.2rem; background: #d4edda; border: 1px solid #c3e6cb; color: #155724; border-radius: 6px;">
+                        <strong style="font-size: 1rem;">Final Answer:</strong> The bathroom is 50 square feet.
+                    </div>
+                `;
+            }
+            
+            const cotStepsEl = document.getElementById('cotSteps');
+            if (cotStepsEl) {
+                cotStepsEl.innerHTML = stepsHTML;
+                
+                // Auto-scroll to bottom after rendering
+                // Get the parent scrolling container
+                const scrollContainer = cotStepsEl.parentElement;
+                if (scrollContainer) {
+                    setTimeout(() => {
+                        scrollContainer.scrollTop = scrollContainer.scrollHeight;
+                    }, 100);
+                }
+            }
+            
+            const cotProgressEl = document.getElementById('cotProgress');
+            if (cotProgressEl) {
+                cotProgressEl.innerHTML = `Step <strong style="color: #4ECDC4;">${cotCurrentStep + 1}</strong> of <strong style="color: #1e293b;">${cotSteps.length}</strong>`;
+            }
+            
+            const cotStepDescEl = document.getElementById('cotStepDesc');
+            if (cotStepDescEl) {
+                cotStepDescEl.innerHTML = `
+                    <div style="margin-bottom: 0.5rem; color: #1e293b;"><span id="cotProgress">Step <strong style="color: #4ECDC4;">${cotCurrentStep + 1}</strong> of <strong>${cotSteps.length}</strong></span></div>
+                    <strong style="color: #1e293b;">Step ${cotCurrentStep + 1}:</strong> <span style="color: #1e293b;">${cotSteps[cotCurrentStep].title}</span>
+                `;
+            }
+            
+            // Update buttons
+            const cotPrevBtn = document.getElementById('cotPrev');
+            const cotNextBtn = document.getElementById('cotNext');
+            if (cotPrevBtn && cotNextBtn) {
+                cotPrevBtn.disabled = cotCurrentStep === 0;
+                cotNextBtn.disabled = cotCurrentStep === cotSteps.length - 1;
+                cotPrevBtn.style.opacity = cotPrevBtn.disabled ? '0.4' : '1';
+                cotNextBtn.style.opacity = cotNextBtn.disabled ? '0.4' : '1';
+            }
+        }
+        
+        function playCoT() {
+            if (cotCurrentStep >= cotSteps.length - 1) {
+                return; // Already at the end
+            }
+            
+            cotPlaying = true;
+            document.getElementById('cotPlayPause').textContent = '⏸ Pause';
+            
+            // Advance immediately
+            cotCurrentStep++;
+            updateCoTDisplay();
+            
+            // Then continue with interval
+            cotInterval = setInterval(() => {
+                if (cotCurrentStep < cotSteps.length - 1) {
+                    cotCurrentStep++;
+                    updateCoTDisplay();
+                } else {
+                    pauseCoT();
+                }
+            }, 2000);
+        }
+        
+        function pauseCoT() {
+            cotPlaying = false;
+            document.getElementById('cotPlayPause').textContent = '▶ Play';
+            if (cotInterval) {
+                clearInterval(cotInterval);
+                cotInterval = null;
+            }
+        }
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.contribution-card, .result-metric, .comparison-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
         // BibTeX modal functions
         function showBibtex(event) {
             event.preventDefault();
@@ -1275,7 +2100,7 @@
                 }, 2000);
             });
         }
-        
+
         // Close modal when clicking outside
         document.addEventListener('click', function(event) {
             const modal = document.getElementById('bibtexModal');
@@ -1283,6 +2108,9 @@
                 closeBibtex();
             }
         });
+
+        // Initialize iGraph demo by default on page load
+        initIGraphDemo();
         
         // Set initial opacity for active content
         setTimeout(() => {
