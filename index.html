@@ -51,13 +51,12 @@
         
         /* Hero Section */
         .hero {
-            min-height: 95vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             overflow: hidden;
-            padding-top: 2rem;
         }
         
         .hero::before {
@@ -91,6 +90,17 @@
             to {
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulsateGlow {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(123, 104, 238, 0.7), 0 0 40px rgba(147, 112, 219, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.1);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 35px rgba(123, 104, 238, 0.9), 0 0 60px rgba(147, 112, 219, 0.7), inset 0 0 25px rgba(255, 255, 255, 0.15);
+                transform: scale(1.03);
             }
         }
         
@@ -551,40 +561,6 @@
         }
         
         /* Responsive */
-        @keyframes acceptancePulse {
-            0%, 100% {
-                transform: scale(1);
-                box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-            }
-            50% {
-                transform: scale(1.05);
-                box-shadow: 0 6px 25px rgba(102, 126, 234, 0.7);
-            }
-        }
-        
-        .acceptance-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            animation: acceptancePulse 2s ease-in-out infinite;
-        }
-        
-        .acceptance-badge-container {
-            text-align: center;
-            padding: 0.5rem 0 0;
-            margin-bottom: -1rem;
-        }
-        
-        .acceptance-badge .icon {
-            font-size: 1.3rem;
-            margin-right: 0.5rem;
-        }
-        
         @media (max-width: 768px) {
             .comparison {
                 grid-template-columns: 1fr;
@@ -669,15 +645,6 @@
             .demo-section p {
                 font-size: 0.9rem !important;
             }
-            
-            .acceptance-badge {
-                font-size: 0.8rem !important;
-                padding: 0.4rem 1.2rem !important;
-            }
-            
-            .acceptance-badge .icon {
-                font-size: 1rem !important;
-            }
         }
         
         @media (max-width: 968px) {
@@ -739,17 +706,18 @@
     </style>
 </head>
 <body>
-    <!-- Acceptance Badge -->
-    <div class="acceptance-badge-container">
-        <div class="acceptance-badge">
-            <span class="icon">🎊</span>ACCEPTED at IUI 2026
-        </div>
-    </div>
-    
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
+                <!-- Acceptance Banner -->
+                <div style="background: linear-gradient(135deg, #7B68EE, #9370DB); padding: 0.7rem 2rem; border-radius: 50px; margin-bottom: 2rem; animation: fadeInUp 1s ease-out 0.15s backwards, pulsateGlow 1.8s ease-in-out infinite; display: inline-block;">
+                    <div style="display: flex; align-items: center; justify-content: center; gap: 0.6rem;">
+                        <span style="font-size: 1.1rem;">🎉</span>
+                        <span style="font-weight: bold; color: white; font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase;">ACCEPTED at IUI 2026</span>
+                    </div>
+                </div>
+                
                 <h1>
                     Improving <span class="highlight">Human Verification</span><br>
                     of LLM Reasoning through<br>
@@ -783,14 +751,11 @@
                     <div style="background: var(--bg-card); padding: 2rem; border-radius: 8px; max-width: 700px; width: 90%; border: 2px solid var(--secondary); position: relative;">
                         <button onclick="closeBibtex()" style="position: absolute; top: 1rem; right: 1rem; background: var(--accent); color: white; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; font-family: 'Space Mono', monospace;">✕ Close</button>
                         <h3 style="color: var(--highlight); margin-bottom: 1.5rem;">BibTeX Citation</h3>
-                        <pre id="bibtexContent" style="background: rgba(10, 14, 39, 0.8); padding: 1.5rem; border-radius: 6px; overflow-x: auto; color: var(--text); font-family: 'Courier New', monospace; font-size: 0.85rem; line-height: 1.6;">@inproceedings{zhou2026improving,
+                        <pre id="bibtexContent" style="background: rgba(10, 14, 39, 0.8); padding: 1.5rem; border-radius: 6px; overflow-x: auto; color: var(--text); font-family: 'Courier New', monospace; font-size: 0.85rem; line-height: 1.6;">@article{zhou2024improving,
   title={Improving Human Verification of LLM Reasoning through Interactive Explanation Interfaces},
   author={Zhou, Runtao and Nguyen, Giang and Kharya, Nikita and Nguyen, Anh Totti and Agarwal, Chirag},
-  booktitle={Proceedings of the 2026 ACM Conference on Intelligent User Interfaces},
-  series={IUI '26},
-  year={2026},
-  publisher={ACM},
-  note={To appear}
+  journal={arXiv preprint arXiv:2510.22922},
+  year={2024}
 }</pre>
                         <button onclick="copyBibtex()" style="background: var(--secondary); color: var(--primary); border: none; padding: 0.7rem 1.5rem; border-radius: 4px; cursor: pointer; font-family: 'Space Mono', monospace; font-weight: bold; margin-top: 1rem;">📋 Copy to Clipboard</button>
                         <span id="copyFeedback" style="color: var(--highlight); margin-left: 1rem; display: none;">✓ Copied!</span>
